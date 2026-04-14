@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21-Tage-Tracker – Overthinking bei ADHS</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f7f5; color: #1a1a1a; min-height: 100vh; padding: 1.5rem 1rem 3rem; }
+.wrap { max-width: 480px; margin: 0 auto; }
+.book-title { font-size: 11px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+.main-title { font-size: 22px; font-weight: 600; color: #111; line-height: 1.3; margin-bottom: 4px; }
+.sub { font-size: 13px; color: #888; margin-bottom: 1.25rem; }
+.progress-bar-wrap { background: #e0e0dc; border-radius: 99px; height: 6px; overflow: hidden; margin-bottom: 6px; }
+.progress-bar-fill { height: 6px; border-radius: 99px; background: #1D9E75; width: 0%; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: #888; margin-bottom: 0.25rem; }
+.week-label { font-size: 11px; font-weight: 600; color: #aaa; letter-spacing: 0.07em; text-transform: uppercase; margin: 1.25rem 0 0.5rem; }
+.day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 0.25rem; }
+.day-btn { aspect-ratio: 1/1; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: #555; transition: all 0.15s; padding: 0; }
+.day-btn:hover { border-color: #1D9E75; color: #1D9E75; }
+.day-btn.done { background: #1D9E75; border-color: #1D9E75; color: #fff; }
+.day-btn.active { border: 2px solid #1D9E75; color: #1D9E75; font-weight: 600; }
+.card { background: #fff; border: 1px solid #e8e8e4; border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
+.card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
+.day-badge { min-width: 42px; height: 42px; border-radius: 8px; background: #E1F5EE; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #0F6E56; flex-shrink: 0; }
+.card-title { font-size: 16px; font-weight: 600; color: #111; line-height: 1.35; }
+.card-page { font-size: 12px; color: #aaa; margin-top: 3px; }
+.divider { border: none; border-top: 1px solid #f0f0ec; margin: 0.875rem 0; }
+.section { margin-top: 0.875rem; }
+.section-label { font-size: 11px; font-weight: 600; color: #aaa; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 4px; }
+.section-text { font-size: 14px; color: #444; line-height: 1.65; }
+.done-btn { width: 100%; margin-top: 1rem; padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; font-size: 14px; font-weight: 500; color: #333; cursor: pointer; transition: all 0.15s; }
+.done-btn:hover { background: #f5f5f2; }
+.done-btn.marked { background: #1D9E75; color: #fff; border-color: #1D9E75; }
+.nav { display: flex; gap: 8px; margin-top: 10px; }
+.nav button { flex: 1; padding: 9px; border-radius: 8px; border: 1px solid #ddd; background: #f7f7f5; font-size: 13px; color: #555; cursor: pointer; }
+.nav button:hover { background: #efefeb; }
+.nav button:disabled { opacity: 0.3; cursor: default; }
+.streak { font-size: 12px; color: #aaa; margin-top: 0.625rem; text-align: center; min-height: 18px; }
+.reset-btn { display: block; margin: 1.5rem auto 0; font-size: 12px; color: #bbb; background: none; border: none; cursor: pointer; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="book-title">Overthinking bei ADHS im Erwachsenenalter</div>
+  <div class="main-title">Dein 21-Tage-Begleiter</div>
+  <div class="sub">Ein Werkzeug pro Tag. Kein Druck, kein Perfektionismus.</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="pbar"></div></div>
+  <div class="progress-label" id="plabel">0 von 21 Tagen abgeschlossen</div>
+  <div class="week-label">Woche 1 — Sofort weniger Kopf</div>
+  <div class="day-grid" id="week1"></div>
+  <div class="week-label">Woche 2 — Alltag &amp; Beziehungen stabilisieren</div>
+  <div class="day-grid" id="week2"></div>
+  <div class="week-label">Woche 3 — Job, Gender &amp; Bürokratie</div>
+  <div class="day-grid" id="week3"></div>
+  <div class="card">
+    <div class="card-top">
+      <div class="day-badge" id="badge">T1</div>
+      <div>
+        <div class="card-title" id="ctitle"></div>
+        <div class="card-page" id="cpage"></div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="section"><div class="section-label">Uebung</div><div class="section-text" id="ctool"></div></div>
+    <div class="section"><div class="section-label">Alltagssituation</div><div class="section-text" id="csit"></div></div>
+    <div class="section"><div class="section-label">Warum das funktioniert</div><div class="section-text" id="cwhy"></div></div>
+    <button class="done-btn" id="donebtn">Als erledigt markieren</button>
+    <div class="nav">
+      <button id="prevbtn">Zurueck</button>
+      <button id="nextbtn">Weiter</button>
+    </div>
+    <div class="streak" id="streak"></div>
+  </div>
+  <button class="reset-btn" id="resetbtn">Fortschritt zuruecksetzen</button>
+</div>
+<script>
+var DAYS=[
+{title:"Staerken-Detektive",page:"S. 4",tool:"Schreib 1 Mini-Erfolg in 3 Spalten: Situation, ADHS-Anteil, Beweis.",sit:"Du liegst abends im Bett und dein Kopf spielt den Tag als Highlight-Reel ab. Du sammelst 1 Gegenbeweis statt zu grübeln.",why:"Fakten entkräften den Negativfilter und bremsen die Schamspirale."},
+{title:"Narrativer Kritiker",page:"S. 7",tool:"Gib der Kritikerstimme einen Namen und sag: Ah, das ist wieder [Name].",sit:"Nach einem Fehler startet sofort die Stimme Du bist unfähig. Du erkennst: Das ist ein Gedankensender, nicht die Wahrheit.",why:"Benennen schafft Distanz und reduziert die emotionale Wucht."},
+{title:"Dopamin-Pause",page:"S. 17",tool:"3 Minuten Timer: Handy weg, kein Input, nur still sitzen.",sit:"Du feilst ewig an einer Nachricht oder scrollst, weil dein Kopf zu laut ist. Du machst einen Reset.",why:"Reiz-Entzug senkt Ueberstimulation und nimmt dem Gruebeln den Treibstoff."},
+{title:"5-4-3-2-1-Erdungstechnik",page:"S. 20",tool:"5 Dinge sehen, 4 fuehlen, 3 hoeren, 2 riechen, 1 schmecken.",sit:"Im Supermarkt oder Buero wird alles zu viel und du kippst in Overload. Du holst dich in die Gegenwart zurueck.",why:"Sinnesfokus verdraengt Gedankenschleifen, weil er Kapazitaet im Gehirn bindet."},
+{title:"Sensorik-Audit",page:"S. 30",tool:"Notiere 3 Stress-Reize (Licht, Geraeusch, Kleidung) und entferne 1 sofort.",sit:"Du bist grundlos gereizt. Tatsaechlich stresst dich z.B. kratzende Kleidung oder grelles Licht permanent.",why:"Weniger Reize bedeutet weniger Dauerstress und weniger Overthinking als Notfallreaktion."},
+{title:"Safe-Space-Box",page:"S. 31",tool:"Lege 2 Dinge griffbereit bereit, z.B. Ohrstoepsel und Fidget.",sit:"Nach einem sozialen Tag bist du kurz vor Shutdown. Du greifst zur Box statt dich zusammenzureissen.",why:"Du brauchst keine Willenskraft, sondern sofortige Reizreduktion."},
+{title:"Ideen-Schleuse",page:"S. 43",tool:"Schreib 5 kreisende Gedanken als 1-Satz-Parkplatz auf und setz eine Sichtungszeit.",sit:"Beim Arbeiten kommen dauernd neue Ideen und du springst weg. Du parkst, statt zu jagen.",why:"Externalisieren entlastet dein Arbeitsgedaechtnis und reduziert den inneren Druck."},
+{title:"Analoges Mind-Mapping",page:"S. 44",tool:"5 Minuten Mindmap: Thema in die Mitte, 5 Aeste, fertig.",sit:"Du fuehlst dich ueberforderst, weil alles zusammenklebt. Du machst den Knoten sichtbar.",why:"Sichtbarkeit macht Chaos sortierbar und senkt mentale Ueberlastung."},
+{title:"Unmasking-Ampel",page:"S. 53",tool:"Ordne 3 Kontexte in Gruen, Gelb oder Rot ein: Maske ab, locker, auf.",sit:"Du bist nach Treffen leer und gruebelst danach stundenlang. Zu viel Rot ohne Erholung.",why:"Du steuerst Energie ueber passende soziale Zonen statt ueber Durchhalten."},
+{title:"SOS-Technik bei RSD",page:"S. 55",tool:"Sag: Das koennte RSD sein. Notiere 2 neutrale Erklaerungen. Entscheide: Ich warte bis morgen.",sit:"Jemand antwortet nicht oder wirkt kurz. Dein Kopf macht daraus Ablehnung.",why:"Du stoppst Interpretation und schaffst eine Zeitbremse gegen Impulsreaktionen."},
+{title:"Time-Out-Geste",page:"S. 66",tool:"Lege Satz und Rueckkehrzeit fest: Time-out, ich komme um X Uhr zurueck.",sit:"Ein Gespraech kippt und du merkst koerperlich, dass gleich eskaliert wird. Du gehst raus.",why:"Pause senkt den Stresspegel, damit dein Gehirn wieder steuerbar wird."},
+{title:"Dopamin-Check-in",page:"S. 68",tool:"Notiere 3 Fragen: Was war gut? Was war schwer? Was brauche ich?",sit:"Die Beziehung wird zu Orga und Problemloesen. Du gruebelt ueber uns. Du erzeugst wieder Verbindung.",why:"Positive Momente bekommen bewusst Platz und reduzieren Beziehungs-Overthinking."},
+{title:"System der minimalen Reibung",page:"S. 79",tool:"Waehle 1 Stelle, die nie funktioniert, und mach sie sichtbarer oder zugaenglicher.",sit:"Schluessel oder Post scheitern immer wieder und triggern Scham. Du baust die Huerde ab.",why:"Weniger Reibung bedeutet mehr Umsetzung und weniger Schamspiralen."},
+{title:"15-Minuten-Blitz-Routine",page:"S. 81",tool:"5 Minuten Timer: 1 Flaeche frei oder 10 Dinge weg.",sit:"Chaos wirkt riesig, du vermeidest und gruebelst. Du machst einen schnellen sichtbaren Reset.",why:"Ein kleiner sichtbarer Erfolg senkt Stress und erhoeht Handlungsgefuehl."},
+{title:"Eat the Frog (ADHS-Variante)",page:"S. 93",tool:"Schreib den Frosch auf und definiere den kleinsten Startschritt (max. 1 Minute).",sit:"Du bist beschaeftigt mit Kleinkram, aber das Wichtigste bleibt liegen. Du startest mikro-klein statt zu prokrastinieren.",why:"Mini-Start erzeugt Momentum und umgeht Startwiderstand."},
+{title:"Fokus-Timer und Body Doubling",page:"S. 94",tool:"Starte einen 5-10 Minuten Fokus-Sprint mit Timer. Body Double optional.",sit:"Du willst anfangen, driftest aber ins Scrollen. Der Sprint bringt dich in Bewegung.",why:"Zeitlimit macht den Einstieg klein und reduziert Ueberforderung."},
+{title:"Cycle-Planner",page:"S. 106",tool:"Markiere Energie: low, medium oder high. Passe 1 Erwartung daran an.",sit:"Rund um Low-Phasen wird alles lauter im Kopf und du wertest dich ab. Du planst passend statt zu kaempfen.",why:"Planung nach Energie reduziert Selbstvorwuerfe und Overthinking-Druck."},
+{title:"Ernaehrung und Dopamin-Stabilisierung",page:"S. 108",tool:"Plane 1 Stabilizer: Wasser plus Protein-Snack oder fester Snack-Slot.",sit:"Nachmittags-Crash fuehrt zu mehr Gruebeln und Reizbarkeit. Du stabilisierst statt zu kompensieren.",why:"Stabilere Energie senkt innere Unruhe, die Gruebeln antreibt."},
+{title:"Physisches Entladen",page:"S. 118",tool:"90 Sekunden: 10 Kniebeugen, 20 Sek Shake oder Gehen, 10 Kniebeugen.",sit:"Du spuerst Wut oder Impuls und willst sofort reagieren. Du entlaedst, bevor du sprichst oder schreibst.",why:"Koerperlicher Stressabbau reduziert Impulsreaktionen und das Nach-Gruebeln."},
+{title:"Box-Breathing",page:"S. 120",tool:"2 Minuten Box-Breathing: 4 einatmen, 4 halten, 4 ausatmen, 4 halten.",sit:"Vor einem Telefonat oder Behoerdengang steigt Alarm im Koerper. Du regulierst, bevor du vermeidest.",why:"Atmung wirkt direkt aufs Nervensystem und senkt die Alarmstufe."},
+{title:"Drei-Kisten und Telefon-Skript",page:"S. 144 + 146",tool:"Sortiere 1 Brief in Jetzt, Warten oder Archiv. Schreibe 3 Saetze fuers Telefonat: Ich rufe an wegen... / Aktenzeichen... / Ich brauche...",sit:"Mahnung liegt seit Wochen unerledigt, Anruf blockiert dich. Du zerlegst die Huerden statt Kopfkino zu machen.",why:"Du reduzierst Entscheidungslast und senkst die Schwelle, ueberhaupt zu handeln."}
+];
+
+var current=0,done=[];
+function load(){try{var d=localStorage.getItem('a21d');if(d)done=JSON.parse(d);var c=localStorage.getItem('a21c');if(c!==null)current=parseInt(c)||0;}catch(e){}}
+function save(){try{localStorage.setItem('a21d',JSON.stringify(done));localStorage.setItem('a21c',String(current));}catch(e){}}
+function has(i){return done.indexOf(i)!==-1;}
+function renderGrid(){
+  var ids=['week1','week2','week3'];
+  for(var w=0;w<3;w++){
+    var el=document.getElementById(ids[w]);
+    el.innerHTML='';
+    var s=w*7;
+    for(var i=s;i<s+7;i++){
+      var b=document.createElement('button');
+      b.className='day-btn'+(has(i)?' done':'')+(i===current?' active':'');
+      b.textContent=String(i+1);
+      (function(x){b.onclick=function(){current=x;save();renderAll();};})(i);
+      el.appendChild(b);
+    }
+  }
+}
+function renderCard(){
+  var d=DAYS[current];
+  document.getElementById('badge').textContent='T'+(current+1);
+  document.getElementById('ctitle').textContent=d.title;
+  document.getElementById('cpage').textContent=d.page;
+  document.getElementById('ctool').textContent=d.tool;
+  document.getElementById('csit').textContent=d.sit;
+  document.getElementById('cwhy').textContent=d.why;
+  var btn=document.getElementById('donebtn');
+  if(has(current)){btn.textContent='Erledigt';btn.classList.add('marked');}
+  else{btn.textContent='Als erledigt markieren';btn.classList.remove('marked');}
+  document.getElementById('prevbtn').disabled=current===0;
+  document.getElementById('nextbtn').disabled=current===20;
+  document.getElementById('pbar').style.width=Math.round(done.length/21*100)+'%';
+  document.getElementById('plabel').textContent=done.length+' von 21 Tagen abgeschlossen';
+  var streak=0;for(var i=0;i<21;i++){if(has(i))streak++;else break;}
+  document.getElementById('streak').textContent=streak>1?streak+' Tage hintereinander — weiter so.':'';
+}
+function renderAll(){renderGrid();renderCard();}
+document.getElementById('donebtn').onclick=function(){
+  var idx=done.indexOf(current);
+  if(idx!==-1){done.splice(idx,1);}
+  else{done.push(current);if(current<20){setTimeout(function(){current++;save();renderAll();},400);}}
+  save();renderAll();
+};
+document.getElementById('prevbtn').onclick=function(){if(current>0){current--;save();renderAll();}};
+document.getElementById('nextbtn').onclick=function(){if(current<20){current++;save();renderAll();}};
+document.getElementById('resetbtn').onclick=function(){if(confirm('Fortschritt wirklich zuruecksetzen?')){done=[];current=0;save();renderAll();}};
+load();renderAll();
+</script>
+</body>
+</html>
