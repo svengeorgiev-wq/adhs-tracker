@@ -13,12 +13,28 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .hero-title { font-size: 24px; font-weight: 700; line-height: 1.25; margin-bottom: 6px; }
 .hero-sub { font-size: 13px; opacity: 0.8; line-height: 1.5; }
 
+.sos-bar { background: #fff3cd; border-bottom: 2px solid #E8793A; padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sos-text { font-size: 13px; color: #7a4400; font-weight: 500; }
+.sos-btn { background: #E8793A; color: #fff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.sos-btn:hover { background: #d06b2e; }
+
+.sos-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+.sos-modal.open { display: flex; }
+.sos-box { background: #fff; border-radius: 14px; padding: 1.5rem; max-width: 440px; width: 100%; }
+.sos-box-title { font-size: 17px; font-weight: 700; color: #E8793A; margin-bottom: 0.5rem; }
+.sos-box-sub { font-size: 13px; color: #666; margin-bottom: 1.25rem; line-height: 1.6; }
+.sos-tool { background: #f0faf6; border-radius: 10px; padding: 1rem; margin-bottom: 10px; cursor: pointer; border: 1.5px solid transparent; transition: all 0.15s; }
+.sos-tool:hover { border-color: #1D9E75; }
+.sos-tool-title { font-size: 14px; font-weight: 600; color: #0F6E56; margin-bottom: 3px; }
+.sos-tool-desc { font-size: 13px; color: #555; line-height: 1.5; }
+.sos-close { width: 100%; margin-top: 1rem; padding: 10px; border-radius: 8px; border: 1.5px solid #ddd; background: #fff; font-size: 13px; color: #666; cursor: pointer; }
+
 .wrap { max-width: 480px; margin: 0 auto; padding: 0 1rem; }
 
 .intro { background: #fff; border-radius: 12px; padding: 1.25rem; margin: 1.25rem 0; border-left: 4px solid #1D9E75; }
 .intro-title { font-size: 14px; font-weight: 600; color: #0F6E56; margin-bottom: 0.5rem; }
 .intro-text { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 0.75rem; }
-.intro-steps { list-style: none; padding: 0; }
+.intro-steps { list-style: none; }
 .intro-steps li { font-size: 13px; color: #444; line-height: 1.6; padding: 5px 0; display: flex; gap: 10px; align-items: flex-start; }
 .num { min-width: 22px; height: 22px; border-radius: 50%; background: #1D9E75; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 
@@ -38,7 +54,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
 .day-badge { min-width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, #1D9E75, #0F6E56); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
 .card-title { font-size: 17px; font-weight: 700; color: #111; line-height: 1.3; }
-.card-page { display: none; }
 .page-hint { display: inline-block; margin-top: 6px; font-size: 12px; font-weight: 600; color: #0F6E56; background: #E1F5EE; border-radius: 6px; padding: 4px 10px; }
 .divider { border: none; border-top: 1px solid #f0f0ec; margin: 0.875rem 0; }
 .section { margin-top: 0.875rem; }
@@ -46,12 +61,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .slabel.uebung { color: #1D9E75; }
 .slabel.situation { color: #E8793A; }
 .slabel.warum { color: #6B5DD3; }
+.slabel.notiz { color: #888; }
 .section-text { font-size: 14px; color: #444; line-height: 1.7; }
+
+.notiz-area { width: 100%; margin-top: 5px; padding: 10px 12px; border-radius: 8px; border: 1.5px solid #d0e8de; background: #f9fdfb; font-size: 14px; color: #333; font-family: inherit; line-height: 1.6; resize: none; min-height: 80px; transition: border-color 0.15s; }
+.notiz-area:focus { outline: none; border-color: #1D9E75; }
+.notiz-area::placeholder { color: #bbb; }
+.notiz-saved { font-size: 11px; color: #1D9E75; margin-top: 4px; height: 16px; transition: opacity 0.3s; opacity: 0; }
+.notiz-saved.show { opacity: 1; }
 
 .done-btn { width: 100%; margin-top: 1.25rem; padding: 13px; border-radius: 10px; border: none; background: #1D9E75; font-size: 14px; font-weight: 600; color: #fff; cursor: pointer; transition: all 0.15s; }
 .done-btn:hover { background: #178a64; }
 .done-btn.marked { background: #0F6E56; }
-.done-btn.marked::before { content: "✓ "; }
 
 .nav { display: flex; gap: 8px; margin-top: 10px; }
 .nav button { flex: 1; padding: 10px; border-radius: 10px; border: 1.5px solid #c8ddd6; background: #f0faf6; font-size: 13px; font-weight: 500; color: #1D9E75; cursor: pointer; transition: all 0.15s; }
@@ -60,6 +81,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 .streak { font-size: 12px; color: #1D9E75; margin-top: 0.625rem; text-align: center; min-height: 18px; font-weight: 500; }
 .reset-btn { display: block; margin: 1.75rem auto 0; font-size: 12px; color: #bbb; background: none; border: none; cursor: pointer; text-decoration: underline; }
+
+.finish-screen { display: none; background: #fff; border-radius: 14px; padding: 2rem 1.25rem; margin-top: 1.25rem; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+.finish-icon { font-size: 48px; margin-bottom: 1rem; }
+.finish-title { font-size: 22px; font-weight: 700; color: #0F6E56; margin-bottom: 0.75rem; }
+.finish-text { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 1.25rem; }
+.finish-restart { padding: 12px 24px; border-radius: 10px; border: none; background: #1D9E75; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -70,17 +97,41 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   <div class="hero-sub">Ein Werkzeug pro Tag. Kein Druck, kein Perfektionismus.</div>
 </div>
 
-<div class="wrap">
+<div class="sos-bar">
+  <div class="sos-text">Kopf gerade zu laut?</div>
+  <button class="sos-btn" id="sosbtn">Sofort-Hilfe</button>
+</div>
 
+<div class="sos-modal" id="sosmodal">
+  <div class="sos-box">
+    <div class="sos-box-title">Sofort-Hilfe</div>
+    <div class="sos-box-sub">Diese 3 Werkzeuge helfen dir in wenigen Minuten, deinen Kopf zu beruhigen.</div>
+    <div class="sos-tool" onclick="jumpTo(2)">
+      <div class="sos-tool-title">Dopamin-Pause — S. 17</div>
+      <div class="sos-tool-desc">3 Minuten: Handy weg, kein Input, nur still sitzen. Sofortiger Reset.</div>
+    </div>
+    <div class="sos-tool" onclick="jumpTo(3)">
+      <div class="sos-tool-title">5-4-3-2-1-Erdungstechnik — S. 20</div>
+      <div class="sos-tool-desc">5 Dinge sehen, 4 fühlen, 3 hören, 2 riechen, 1 schmecken. Bringt dich sofort ins Jetzt.</div>
+    </div>
+    <div class="sos-tool" onclick="jumpTo(19)">
+      <div class="sos-tool-title">Box-Breathing — S. 120</div>
+      <div class="sos-tool-desc">4 Sek ein, 4 halten, 4 aus, 4 halten. Senkt die Alarmstufe direkt.</div>
+    </div>
+    <button class="sos-close" onclick="closeSos()">Schließen</button>
+  </div>
+</div>
+
+<div class="wrap">
   <div class="intro">
     <div class="intro-title">So funktioniert diese App</div>
     <div class="intro-text">Diese App begleitet dich durch den 21-Tage-Plan aus deinem Buch. Jeden Tag ein konkretes Werkzeug — direkt aus dem Buch, sofort anwendbar.</div>
     <ul class="intro-steps">
       <li><span class="num">1</span>Tippe auf eine Tageszahl, um das Werkzeug des Tages zu sehen.</li>
       <li><span class="num">2</span>Lies die Übung und probiere sie heute aus.</li>
-      <li><span class="num">3</span>Tippe auf den grünen Button, wenn du fertig bist — der Tag wird markiert.</li>
-      <li><span class="num">4</span>Der Balken oben zeigt deinen Fortschritt.</li>
-      <li><span class="num">5</span>Dein Fortschritt wird automatisch gespeichert, auch wenn du die Seite schließt.</li>
+      <li><span class="num">3</span>Schreib deine Erfahrung ins Notizfeld — alles wird automatisch gespeichert.</li>
+      <li><span class="num">4</span>Tippe auf den grünen Button wenn du fertig bist — der Tag wird markiert.</li>
+      <li><span class="num">5</span>Wenn dein Kopf gerade zu laut ist: Notfall-Button oben rechts.</li>
     </ul>
   </div>
 
@@ -95,19 +146,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   <div class="week-label">Woche 3 — Job, Gender &amp; Bürokratie</div>
   <div class="day-grid" id="week3"></div>
 
-  <div class="card">
+  <div class="card" id="maincard">
     <div class="card-top">
       <div class="day-badge" id="badge">T1</div>
       <div>
         <div class="card-title" id="ctitle"></div>
-        <div class="card-page" id="cpage"></div>
-        <div class="page-hint">&#128216; Im Buch nachschlagen auf <span id="cpagenum"></span></div>
+        <div class="page-hint" id="cpage"></div>
       </div>
     </div>
     <hr class="divider">
     <div class="section"><div class="slabel uebung">Übung</div><div class="section-text" id="ctool"></div></div>
     <div class="section"><div class="slabel situation">Alltagssituation</div><div class="section-text" id="csit"></div></div>
     <div class="section"><div class="slabel warum">Warum das funktioniert</div><div class="section-text" id="cwhy"></div></div>
+    <div class="section">
+      <div class="slabel notiz">Meine Notiz zum Tag</div>
+      <textarea class="notiz-area" id="notizfeld" placeholder="Was hast du heute ausprobiert? Wie hat es sich angefühlt?"></textarea>
+      <div class="notiz-saved" id="notiz-saved">Gespeichert ✓</div>
+    </div>
     <button class="done-btn" id="donebtn">Als erledigt markieren</button>
     <div class="nav">
       <button id="prevbtn">&#8592; Zurück</button>
@@ -115,37 +170,57 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     </div>
     <div class="streak" id="streak"></div>
   </div>
+
+  <div class="finish-screen" id="finishscreen">
+    <div class="finish-icon">🎉</div>
+    <div class="finish-title">Du hast alle 21 Tage geschafft!</div>
+    <div class="finish-text">Das ist keine Kleinigkeit. Gerade mit ADHS ist Durchhalten schwer — du hast dir 21 Mal bewusst Zeit für dich genommen. Dein Gehirn hat neue Wege kennengelernt.<br><br>Schau dir deine Notizen an. Welche Tools haben dir am meisten geholfen? Die bleiben bei dir — auch nach diesen 21 Tagen.</div>
+    <button class="finish-restart" onclick="restart()">Von vorne starten</button>
+  </div>
+
   <button class="reset-btn" id="resetbtn">Fortschritt zurücksetzen</button>
 </div>
 
 <script>
 var DAYS = [
-  {title:"Stärken-Detektive",page:"S. 4",tool:"Schreib 1 Mini-Erfolg in 3 Spalten: Situation / ADHS-Anteil / Beweis.",sit:"Du liegst abends im Bett und dein Kopf spielt den Tag als Highlight-Reel ab. Du sammelst 1 Gegenbeweis statt zu grübeln.",why:"Fakten entkräften den Negativfilter und bremsen die Schamspirale."},
-  {title:"Narrativer Kritiker",page:"S. 7",tool:"Gib der Kritikerstimme einen Namen und sag: Ah, das ist wieder [Name].",sit:"Nach einem Fehler startet sofort die Stimme: Du bist unfähig. Du erkennst: Das ist ein Gedankensender, nicht die Wahrheit.",why:"Benennen schafft Distanz und reduziert die emotionale Wucht."},
-  {title:"Dopamin-Pause",page:"S. 17",tool:"3 Minuten Timer: Handy weg, kein Input, nur still sitzen.",sit:"Du feilst ewig an einer Nachricht oder scrollst, weil dein Kopf zu laut ist. Du machst einen Reset.",why:"Reiz-Entzug senkt Überstimulation und nimmt dem Grübeln den Treibstoff."},
-  {title:"5-4-3-2-1-Erdungstechnik",page:"S. 20",tool:"5 Dinge sehen, 4 fühlen, 3 hören, 2 riechen, 1 schmecken.",sit:"Im Supermarkt oder Büro wird alles zu viel und du kippst in Overload. Du holst dich zurück in die Gegenwart.",why:"Sinnesfokus verdrängt Gedankenschleifen, weil er Kapazität im Gehirn bindet."},
-  {title:"Sensorik-Audit",page:"S. 30",tool:"Notiere 3 Stress-Reize (Licht, Geräusch, Kleidung) und entferne 1 sofort.",sit:"Du bist grundlos gereizt. Tatsächlich stresst dich z. B. kratzende Kleidung oder grelles Licht permanent.",why:"Weniger Reize bedeutet weniger Dauerstress und weniger Overthinking als Notfallreaktion."},
-  {title:"Safe-Space-Box",page:"S. 31",tool:"Lege 2 Dinge griffbereit: z. B. Ohrstöpsel und Fidget.",sit:"Nach einem sozialen Tag bist du kurz vor Shutdown. Du greifst zur Box statt dich zusammenzureißen.",why:"Du brauchst keine Willenskraft, sondern sofortige Reizreduktion."},
-  {title:"Ideen-Schleuse",page:"S. 43",tool:"Schreib 5 kreisende Gedanken als 1-Satz-Parkplatz auf und setz eine Sichtungszeit (z. B. 19:00).",sit:"Beim Arbeiten kommen dauernd neue Ideen und du springst weg. Du parkst, statt zu jagen.",why:"Externalisieren entlastet dein Arbeitsgedächtnis und reduziert den inneren Druck."},
-  {title:"Analoges Mind-Mapping",page:"S. 44",tool:"5 Minuten Mindmap: Thema in die Mitte, 5 Äste, fertig.",sit:"Du fühlst dich überfordert, weil alles zusammenklebt. Du machst den Knoten sichtbar.",why:"Sichtbarkeit macht Chaos sortierbar und senkt mentale Überlastung."},
-  {title:"Unmasking-Ampel",page:"S. 53",tool:"Ordne 3 Kontexte in Grün / Gelb / Rot ein: Maske ab / locker / auf.",sit:"Du bist nach Treffen leer und grübelst stundenlang. Du erkennst: zu viel Rot ohne Erholung.",why:"Du steuerst Energie über passende soziale Zonen statt über Durchhalten."},
-  {title:"SOS-Technik bei RSD",page:"S. 55",tool:"Sag: Das könnte RSD sein. Notiere 2 neutrale Erklärungen. Entscheide: Ich warte bis morgen.",sit:"Jemand antwortet nicht oder wirkt kurz. Dein Kopf macht daraus Ablehnung.",why:"Du stoppst Interpretation und schaffst eine Zeitbremse gegen Impulsreaktionen."},
-  {title:"Time-Out-Geste",page:"S. 66",tool:"Lege Satz und Rückkehrzeit fest: Time-out, ich komme um __ Uhr zurück.",sit:"Ein Gespräch kippt und du merkst körperlich: gleich eskaliert es. Du gehst raus bevor du Schaden machst.",why:"Pause senkt den Stresspegel, damit dein Gehirn wieder steuerbar wird."},
-  {title:"Dopamin-Check-in",page:"S. 68",tool:"3 Fragen: Was war gut? Was war schwer? Was brauche ich?",sit:"Die Beziehung wird zu Orga und Problemlösen. Du grübelst über uns. Du erzeugst wieder Verbindung.",why:"Positive Momente bekommen bewusst Platz und reduzieren Beziehungs-Overthinking."},
-  {title:"System der minimalen Reibung",page:"S. 79",tool:"Wähle 1 Stelle, die nie funktioniert, und mach sie sichtbarer oder zugänglicher.",sit:"Schlüssel oder Post scheitern immer wieder und triggern Scham. Du baust die Hürde ab.",why:"Weniger Reibung bedeutet mehr Umsetzung und weniger Schamspiralen."},
-  {title:"15-Minuten-Blitz-Routine",page:"S. 81",tool:"5 Minuten Timer: 1 Fläche frei oder 10 Dinge weg.",sit:"Chaos wirkt riesig, du vermeidest und grübelst. Du machst einen schnellen sichtbaren Reset.",why:"Ein kleiner sichtbarer Erfolg senkt Stress und erhöht das Handlungsgefühl."},
-  {title:"Eat the Frog (ADHS-Variante)",page:"S. 93",tool:"Schreib den Frosch auf und definiere den kleinsten Startschritt (max. 1 Minute).",sit:"Du bist beschäftigt mit Kleinkram, aber das Wichtigste bleibt liegen. Du startest mikro-klein.",why:"Mini-Start erzeugt Momentum und umgeht Startwiderstand."},
-  {title:"Fokus-Timer & Body Doubling",page:"S. 94",tool:"Starte einen 5–10 Minuten Fokus-Sprint mit Timer. Body Double optional.",sit:"Du willst anfangen, driftest aber ins Scrollen. Der Sprint bringt dich in Bewegung.",why:"Zeitlimit macht den Einstieg klein und reduziert Überforderung."},
-  {title:"Cycle-Planner",page:"S. 106",tool:"Markiere Energie: low / medium / high. Passe 1 Erwartung daran an.",sit:"Rund um Low-Phasen wird alles lauter im Kopf und du wertest dich ab. Du planst passend statt zu kämpfen.",why:"Planung nach Energie reduziert Selbstvorwürfe und Overthinking-Druck."},
-  {title:"Ernährung & Dopamin-Stabilisierung",page:"S. 108",tool:"Plane 1 Stabilizer: Wasser + Protein-Snack oder fester Snack-Slot.",sit:"Nachmittags-Crash führt zu mehr Grübeln und Reizbarkeit. Du stabilisierst statt zu kompensieren.",why:"Stabilere Energie senkt die innere Unruhe, die Grübeln antreibt."},
-  {title:"Physisches Entladen",page:"S. 118",tool:"90 Sekunden: 10 Kniebeugen + 20 Sek Shake/Gehen + 10 Kniebeugen.",sit:"Du spürst Wut oder Impuls und willst sofort reagieren. Du entlädst, bevor du sprichst oder schreibst.",why:"Körperlicher Stressabbau reduziert Impulsreaktionen und das Nach-Grübeln."},
-  {title:"Box-Breathing",page:"S. 120",tool:"2 Minuten: 4 Sek einatmen, 4 halten, 4 ausatmen, 4 halten.",sit:"Vor Telefonat oder Behördengang steigt Alarm im Körper. Du regulierst, bevor du vermeidest.",why:"Atmung wirkt direkt aufs Nervensystem und senkt die Alarmstufe."},
-  {title:"Drei-Kisten + Telefon-Skript",page:"S. 144 + 146",tool:"Sortiere 1 Brief in Jetzt / Warten / Archiv und schreibe 3 Sätze fürs Telefonat: Ich rufe an wegen... / Aktenzeichen... / Ich brauche...",sit:"Mahnung liegt seit Wochen ungeöffnet, Anruf blockiert dich. Du zerlegst die Hürde in Sortieren und Skript statt Kopfkino.",why:"Weniger Entscheidungslast senkt die Schwelle, überhaupt zu handeln."}
+  {title:"Stärken-Detektive",page:"Im Buch nachschlagen — S. 4",tool:"Schreib 1 Mini-Erfolg in 3 Spalten: Situation / ADHS-Anteil / Beweis.",sit:"Du liegst abends im Bett und dein Kopf spielt den Tag als Highlight-Reel ab. Du sammelst 1 Gegenbeweis statt zu grübeln.",why:"Fakten entkräften den Negativfilter und bremsen die Schamspirale."},
+  {title:"Narrativer Kritiker",page:"Im Buch nachschlagen — S. 7",tool:"Gib der Kritikerstimme einen Namen und sag: Ah, das ist wieder [Name].",sit:"Nach einem Fehler startet sofort die Stimme: Du bist unfähig. Du erkennst: Das ist ein Gedankensender, nicht die Wahrheit.",why:"Benennen schafft Distanz und reduziert die emotionale Wucht."},
+  {title:"Dopamin-Pause",page:"Im Buch nachschlagen — S. 17",tool:"3 Minuten Timer: Handy weg, kein Input, nur still sitzen.",sit:"Du feilst ewig an einer Nachricht oder scrollst, weil dein Kopf zu laut ist. Du machst einen Reset.",why:"Reiz-Entzug senkt Überstimulation und nimmt dem Grübeln den Treibstoff."},
+  {title:"5-4-3-2-1-Erdungstechnik",page:"Im Buch nachschlagen — S. 20",tool:"5 Dinge sehen, 4 fühlen, 3 hören, 2 riechen, 1 schmecken.",sit:"Im Supermarkt oder Büro wird alles zu viel und du kippst in Overload. Du holst dich zurück in die Gegenwart.",why:"Sinnesfokus verdrängt Gedankenschleifen, weil er Kapazität im Gehirn bindet."},
+  {title:"Sensorik-Audit",page:"Im Buch nachschlagen — S. 30",tool:"Notiere 3 Stress-Reize (Licht, Geräusch, Kleidung) und entferne 1 sofort.",sit:"Du bist grundlos gereizt. Tatsächlich stresst dich z. B. kratzende Kleidung oder grelles Licht permanent.",why:"Weniger Reize bedeutet weniger Dauerstress und weniger Overthinking als Notfallreaktion."},
+  {title:"Safe-Space-Box",page:"Im Buch nachschlagen — S. 31",tool:"Lege 2 Dinge griffbereit: z. B. Ohrstöpsel und Fidget.",sit:"Nach einem sozialen Tag bist du kurz vor Shutdown. Du greifst zur Box statt dich zusammenzureißen.",why:"Du brauchst keine Willenskraft, sondern sofortige Reizreduktion."},
+  {title:"Ideen-Schleuse",page:"Im Buch nachschlagen — S. 43",tool:"Schreib 5 kreisende Gedanken als 1-Satz-Parkplatz auf und setz eine Sichtungszeit (z. B. 19:00).",sit:"Beim Arbeiten kommen dauernd neue Ideen und du springst weg. Du parkst, statt zu jagen.",why:"Externalisieren entlastet dein Arbeitsgedächtnis und reduziert den inneren Druck."},
+  {title:"Analoges Mind-Mapping",page:"Im Buch nachschlagen — S. 44",tool:"5 Minuten Mindmap: Thema in die Mitte, 5 Äste, fertig.",sit:"Du fühlst dich überfordert, weil alles zusammenklebt. Du machst den Knoten sichtbar.",why:"Sichtbarkeit macht Chaos sortierbar und senkt mentale Überlastung."},
+  {title:"Unmasking-Ampel",page:"Im Buch nachschlagen — S. 53",tool:"Ordne 3 Kontexte in Grün / Gelb / Rot ein: Maske ab / locker / auf.",sit:"Du bist nach Treffen leer und grübelst stundenlang. Du erkennst: zu viel Rot ohne Erholung.",why:"Du steuerst Energie über passende soziale Zonen statt über Durchhalten."},
+  {title:"SOS-Technik bei RSD",page:"Im Buch nachschlagen — S. 55",tool:"Sag: Das könnte RSD sein. Notiere 2 neutrale Erklärungen. Entscheide: Ich warte bis morgen.",sit:"Jemand antwortet nicht oder wirkt kurz. Dein Kopf macht daraus Ablehnung.",why:"Du stoppst Interpretation und schaffst eine Zeitbremse gegen Impulsreaktionen."},
+  {title:"Time-Out-Geste",page:"Im Buch nachschlagen — S. 66",tool:"Lege Satz und Rückkehrzeit fest: Time-out, ich komme um __ Uhr zurück.",sit:"Ein Gespräch kippt und du merkst körperlich: gleich eskaliert es. Du gehst raus bevor du Schaden machst.",why:"Pause senkt den Stresspegel, damit dein Gehirn wieder steuerbar wird."},
+  {title:"Dopamin-Check-in",page:"Im Buch nachschlagen — S. 68",tool:"3 Fragen: Was war gut? Was war schwer? Was brauche ich?",sit:"Die Beziehung wird zu Orga und Problemlösen. Du grübelst über uns. Du erzeugst wieder Verbindung.",why:"Positive Momente bekommen bewusst Platz und reduzieren Beziehungs-Overthinking."},
+  {title:"System der minimalen Reibung",page:"Im Buch nachschlagen — S. 79",tool:"Wähle 1 Stelle, die nie funktioniert, und mach sie sichtbarer oder zugänglicher.",sit:"Schlüssel oder Post scheitern immer wieder und triggern Scham. Du baust die Hürde ab.",why:"Weniger Reibung bedeutet mehr Umsetzung und weniger Schamspiralen."},
+  {title:"15-Minuten-Blitz-Routine",page:"Im Buch nachschlagen — S. 81",tool:"5 Minuten Timer: 1 Fläche frei oder 10 Dinge weg.",sit:"Chaos wirkt riesig, du vermeidest und grübelst. Du machst einen schnellen sichtbaren Reset.",why:"Ein kleiner sichtbarer Erfolg senkt Stress und erhöht das Handlungsgefühl."},
+  {title:"Eat the Frog (ADHS-Variante)",page:"Im Buch nachschlagen — S. 93",tool:"Schreib den Frosch auf und definiere den kleinsten Startschritt (max. 1 Minute).",sit:"Du bist beschäftigt mit Kleinkram, aber das Wichtigste bleibt liegen. Du startest mikro-klein.",why:"Mini-Start erzeugt Momentum und umgeht Startwiderstand."},
+  {title:"Fokus-Timer & Body Doubling",page:"Im Buch nachschlagen — S. 94",tool:"Starte einen 5–10 Minuten Fokus-Sprint mit Timer. Body Double optional.",sit:"Du willst anfangen, driftest aber ins Scrollen. Der Sprint bringt dich in Bewegung.",why:"Zeitlimit macht den Einstieg klein und reduziert Überforderung."},
+  {title:"Cycle-Planner",page:"Im Buch nachschlagen — S. 106",tool:"Markiere Energie: low / medium / high. Passe 1 Erwartung daran an.",sit:"Rund um Low-Phasen wird alles lauter im Kopf und du wertest dich ab. Du planst passend statt zu kämpfen.",why:"Planung nach Energie reduziert Selbstvorwürfe und Overthinking-Druck."},
+  {title:"Ernährung & Dopamin-Stabilisierung",page:"Im Buch nachschlagen — S. 108",tool:"Plane 1 Stabilizer: Wasser + Protein-Snack oder fester Snack-Slot.",sit:"Nachmittags-Crash führt zu mehr Grübeln und Reizbarkeit. Du stabilisierst statt zu kompensieren.",why:"Stabilere Energie senkt die innere Unruhe, die Grübeln antreibt."},
+  {title:"Physisches Entladen",page:"Im Buch nachschlagen — S. 118",tool:"90 Sekunden: 10 Kniebeugen + 20 Sek Shake/Gehen + 10 Kniebeugen.",sit:"Du spürst Wut oder Impuls und willst sofort reagieren. Du entlädst, bevor du sprichst oder schreibst.",why:"Körperlicher Stressabbau reduziert Impulsreaktionen und das Nach-Grübeln."},
+  {title:"Box-Breathing",page:"Im Buch nachschlagen — S. 120",tool:"2 Minuten: 4 Sek einatmen, 4 halten, 4 ausatmen, 4 halten.",sit:"Vor Telefonat oder Behördengang steigt Alarm im Körper. Du regulierst, bevor du vermeidest.",why:"Atmung wirkt direkt aufs Nervensystem und senkt die Alarmstufe."},
+  {title:"Drei-Kisten + Telefon-Skript",page:"Im Buch nachschlagen — S. 144 + 146",tool:"Sortiere 1 Brief in Jetzt / Warten / Archiv und schreibe 3 Sätze fürs Telefonat.",sit:"Mahnung liegt seit Wochen ungeöffnet, Anruf blockiert dich. Du zerlegst die Hürde statt Kopfkino zu machen.",why:"Weniger Entscheidungslast senkt die Schwelle, überhaupt zu handeln."}
 ];
 
-var current=0, done=[];
-function load(){try{var d=localStorage.getItem('a21d');if(d)done=JSON.parse(d);var c=localStorage.getItem('a21c');if(c!==null)current=parseInt(c)||0;}catch(e){}}
-function save(){try{localStorage.setItem('a21d',JSON.stringify(done));localStorage.setItem('a21c',String(current));}catch(e){}}
+var current=0, done=[], notes={};
+function load(){
+  try{
+    var d=localStorage.getItem('a21d');if(d)done=JSON.parse(d);
+    var c=localStorage.getItem('a21c');if(c!==null)current=parseInt(c)||0;
+    var n=localStorage.getItem('a21n');if(n)notes=JSON.parse(n);
+  }catch(e){}
+}
+function save(){
+  try{
+    localStorage.setItem('a21d',JSON.stringify(done));
+    localStorage.setItem('a21c',String(current));
+    localStorage.setItem('a21n',JSON.stringify(notes));
+  }catch(e){}
+}
 function has(i){return done.indexOf(i)!==-1;}
 
 function renderGrid(){
@@ -164,17 +239,31 @@ function renderGrid(){
   }
 }
 
+var saveTimer=null;
 function renderCard(){
   var d=DAYS[current];
   document.getElementById('badge').textContent='T'+(current+1);
   document.getElementById('ctitle').textContent=d.title;
   document.getElementById('cpage').textContent=d.page;
-  document.getElementById('cpagenum').textContent=d.page;
   document.getElementById('ctool').textContent=d.tool;
   document.getElementById('csit').textContent=d.sit;
   document.getElementById('cwhy').textContent=d.why;
+
+  var notizfeld=document.getElementById('notizfeld');
+  notizfeld.value=notes[current]||'';
+  notizfeld.oninput=function(){
+    notes[current]=notizfeld.value;
+    if(saveTimer)clearTimeout(saveTimer);
+    saveTimer=setTimeout(function(){
+      save();
+      var saved=document.getElementById('notiz-saved');
+      saved.classList.add('show');
+      setTimeout(function(){saved.classList.remove('show');},1500);
+    },800);
+  };
+
   var btn=document.getElementById('donebtn');
-  if(has(current)){btn.textContent='Erledigt';btn.classList.add('marked');}
+  if(has(current)){btn.textContent='✓ Erledigt';btn.classList.add('marked');}
   else{btn.textContent='Als erledigt markieren';btn.classList.remove('marked');}
   document.getElementById('prevbtn').disabled=current===0;
   document.getElementById('nextbtn').disabled=current===20;
@@ -183,6 +272,10 @@ function renderCard(){
   var streak=0;
   for(var i=0;i<21;i++){if(has(i))streak++;else break;}
   document.getElementById('streak').textContent=streak>1?streak+' Tage hintereinander — weiter so!':'';
+
+  var finished=done.length===21;
+  document.getElementById('maincard').style.display=finished?'none':'block';
+  document.getElementById('finishscreen').style.display=finished?'block':'none';
 }
 
 function renderAll(){renderGrid();renderCard();}
@@ -190,12 +283,22 @@ function renderAll(){renderGrid();renderCard();}
 document.getElementById('donebtn').onclick=function(){
   var idx=done.indexOf(current);
   if(idx!==-1){done.splice(idx,1);}
-  else{done.push(current);if(current<20){setTimeout(function(){current++;save();renderAll();},400);}}
+  else{
+    done.push(current);
+    if(current<20){setTimeout(function(){current++;save();renderAll();},400);}
+  }
   save();renderAll();
 };
 document.getElementById('prevbtn').onclick=function(){if(current>0){current--;save();renderAll();}};
 document.getElementById('nextbtn').onclick=function(){if(current<20){current++;save();renderAll();}};
-document.getElementById('resetbtn').onclick=function(){if(confirm('Fortschritt wirklich zurücksetzen?')){done=[];current=0;save();renderAll();}};
+document.getElementById('resetbtn').onclick=function(){if(confirm('Fortschritt wirklich zurücksetzen?')){done=[];notes={};current=0;save();renderAll();}};
+document.getElementById('sosbtn').onclick=function(){document.getElementById('sosmodal').classList.add('open');};
+
+function closeSos(){document.getElementById('sosmodal').classList.remove('open');}
+function jumpTo(i){current=i;save();renderAll();closeSos();document.getElementById('maincard').scrollIntoView({behavior:'smooth'});}
+function restart(){done=[];notes={};current=0;save();renderAll();}
+
+document.getElementById('sosmodal').onclick=function(e){if(e.target===this)closeSos();};
 
 load();renderAll();
 </script>
