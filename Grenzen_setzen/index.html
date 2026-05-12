@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F5E6E0">
+  <title>21-Tage-Begleiter – Nicht alle. Nicht immer. Nicht alles.</title>
+  <meta name="description" content="Der interaktive Begleiter zum Buch von Lea Hoffmann. Grenzen setzen ohne Schuldgefühle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5E6E0;
+      --bg-warm: #EFD9CF;
+      --bg-soft: #FAEEE6;
+      --card: #FAF7F2;
+      --card-warm: #FFF4ED;
+      --text: #3D2515;
+      --text-soft: #5C3E2C;
+      --text-mute: #8B7568;
+      --coral: #E85E3E;
+      --coral-light: #FF7B5C;
+      --coral-soft: #FFE0D5;
+      --coral-bg: #FFEEE5;
+      --sage: #7A8B6F;
+      --sage-soft: #E6EBE0;
+      --gold: #C89B5C;
+      --gold-soft: #F5E8D0;
+      --border: #E8D5CC;
+      --border-warm: #F0DDD0;
+      --shadow-sm: 0 2px 6px rgba(61, 37, 21, 0.05);
+      --shadow: 0 4px 16px rgba(61, 37, 21, 0.08);
+      --shadow-lg: 0 12px 32px rgba(61, 37, 21, 0.14);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-lg: 20px;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      background-image:
+        radial-gradient(at 10% 0%, rgba(232, 94, 62, 0.05) 0px, transparent 50%),
+        radial-gradient(at 90% 100%, rgba(122, 139, 111, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 18px 60px;
+    }
+
+    @media (min-width: 600px) {
+      .container { padding: 32px 24px 80px; }
+    }
+
+    /* ============ HERO with cover ============ */
+    .hero {
+      position: relative;
+      margin-bottom: 32px;
+      padding: 28px 22px 24px;
+      background: linear-gradient(135deg, var(--bg-soft) 0%, var(--card-warm) 100%);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-warm);
+      overflow: hidden;
+    }
+
+    .sos-button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--coral);
+      color: white;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(232, 94, 62, 0.32);
+      transition: transform 0.15s, box-shadow 0.2s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .sos-button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(232, 94, 62, 0.4); }
+    .sos-button:active { transform: scale(0.97); }
+    .sos-button::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: white; border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
+      animation: sosPulse 2s infinite;
+    }
+    @keyframes sosPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+
+    .hero-content {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 8px;
+    }
+
+    .hero-cover-link {
+      flex-shrink: 0;
+      display: block;
+      width: 100px;
+      text-decoration: none;
+    }
+
+    .footer-cover-link {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .footer-cover {
+      width: 80px;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-cover {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(61, 37, 21, 0.22), 0 2px 6px rgba(61, 37, 21, 0.12);
+      display: block;
+      transform: rotate(-2deg);
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+      padding-top: 4px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 .accent { color: var(--coral); }
+
+    .hero-author {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-mute);
+      margin-bottom: 10px;
+    }
+
+    .hero-tagline {
+      font-size: 13.5px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    @media (min-width: 600px) {
+      .hero { padding: 36px 32px 32px; }
+      .hero-content { gap: 28px; }
+      .hero-cover-link { width: 140px; }
+      .hero h1 { font-size: 30px; }
+      .hero-author { font-size: 15px; }
+      .hero-tagline { font-size: 15px; }
+    }
+
+    /* ============ INTRO BANNER ============ */
+    .intro-banner {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 0;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-warm);
+    }
+
+    .intro-banner summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14.5px;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 44px;
+      gap: 12px;
+    }
+
+    .intro-banner summary::-webkit-details-marker { display: none; }
+    .intro-banner summary::after {
+      content: '+';
+      font-size: 22px;
+      color: var(--coral);
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+    .intro-banner[open] summary::after { content: '–'; }
+
+    .intro-content {
+      padding: 0 20px 22px;
+      font-size: 14.5px;
+      color: var(--text-soft);
+    }
+
+    .intro-content p { margin-bottom: 12px; }
+    .intro-content ol {
+      padding-left: 0;
+      list-style: none;
+      counter-reset: step;
+      margin: 12px 0;
+    }
+    .intro-content ol li {
+      counter-increment: step;
+      padding-left: 36px;
+      position: relative;
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+    .intro-content ol li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 0;
+      width: 24px; height: 24px;
+      background: var(--coral);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ============ PROGRESS ============ */
+    .progress-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-warm);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .progress-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .progress-count {
+      font-size: 14px;
+      color: var(--text-mute);
+      font-weight: 500;
+    }
+
+    .progress-count strong {
+      color: var(--coral);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: var(--border-warm);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--coral-light) 0%, var(--coral) 100%);
+      border-radius: 999px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+      box-shadow: 0 0 12px rgba(232, 94, 62, 0.35);
+    }
+
+    /* ============ KOMPASS / 3 SÄULEN ============ */
+    .kompass {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 600px) {
+      .kompass { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    }
+
+    .kompass-pillar {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      border-left: 4px solid var(--coral);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kompass-pillar:nth-child(2) { border-left-color: var(--sage); }
+    .kompass-pillar:nth-child(3) { border-left-color: var(--gold); }
+
+    .kompass-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .kompass-desc {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+
+    /* ============ WEEK SECTIONS ============ */
+    .week {
+      margin-bottom: 28px;
+    }
+
+    .week-header {
+      margin-bottom: 16px;
+      padding-left: 4px;
+    }
+
+    .week-label {
+      font-size: 11.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .week-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .day-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    }
+
+    .day-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 14px 16px;
+      cursor: pointer;
+      border: 1px solid var(--border-warm);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .day-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle at top right, var(--coral-soft) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+
+    .day-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--border);
+    }
+    .day-card:hover::before { opacity: 0.4; }
+    .day-card:active { transform: translateY(-1px); }
+
+    .day-card.visited { background: var(--card-warm); }
+    .day-card.completed {
+      background: linear-gradient(135deg, #FFF4ED 0%, #FFE0D5 100%);
+      border-color: var(--coral-light);
+    }
+
+    .day-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .day-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-soft);
+      line-height: 1.35;
+      position: relative;
+    }
+
+    .day-check {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 24px; height: 24px;
+      background: var(--coral);
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(232, 94, 62, 0.4);
+    }
+    .day-card.completed .day-check { display: flex; }
+
+    .day-pillar-dot {
+      position: absolute;
+      bottom: 12px; right: 12px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ============ DAY DETAIL ============ */
+    .day-detail {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-warm);
+      animation: fadeUp 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .day-detail.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .day-detail::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--coral) 0%, var(--coral-light) 100%);
+    }
+
+    .day-detail-head {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .day-detail-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .day-detail-meta .dot {
+      width: 6px; height: 6px;
+      background: var(--coral);
+      border-radius: 50%;
+    }
+
+    .day-detail-meta .pillar {
+      color: var(--text-mute);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .day-detail-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .day-detail-chapter {
+      font-size: 13.5px;
+      color: var(--text-mute);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .day-detail-chapter::before {
+      content: '📖';
+      font-size: 14px;
+      font-style: normal;
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 18px; height: 1.5px;
+      background: var(--coral);
+      display: inline-block;
+    }
+
+    .section-body {
+      font-size: 15.5px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .reflection-box {
+      background: linear-gradient(135deg, var(--coral-bg) 0%, var(--bg-soft) 100%);
+      border-left: 3px solid var(--coral);
+      padding: 16px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* ============ INTERACTIVE TOOLS ============ */
+    .tool {
+      background: linear-gradient(135deg, var(--card-warm) 0%, var(--bg-soft) 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border-warm);
+    }
+
+    .tool-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-label::before {
+      content: '✦';
+      color: var(--coral);
+      font-size: 13px;
+    }
+
+    .tool-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .tool-intro {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      line-height: 1.55;
+    }
+
+    /* checkbox tool (Tag 1) */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .check-item {
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border-warm);
+      transition: background 0.15s, border-color 0.15s;
+      min-height: 44px;
+    }
+
+    .check-item:hover { background: var(--bg-soft); }
+
+    .check-item input {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--coral);
+      cursor: pointer;
+    }
+
+    .check-item input:checked + span {
+      color: var(--text-mute);
+      text-decoration: line-through;
+      text-decoration-color: var(--coral);
+    }
+
+    .check-item span {
+      font-size: 14.5px;
+      color: var(--text);
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+
+    /* commitment / single input (Tag 2) */
+    .commitment-input {
+      width: 100%;
+      padding: 16px 18px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text);
+      transition: border-color 0.2s;
+      line-height: 1.4;
+    }
+
+    .commitment-input:focus { outline: none; border-color: var(--coral); }
+
+    /* Body map (Tag 3) */
+    .body-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .body-zone {
+      background: white;
+      border: 2px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 14px 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      user-select: none;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .body-zone-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .body-zone-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .body-zone.active {
+      background: var(--coral-soft);
+      border-color: var(--coral);
+    }
+
+    .body-zone.active .body-zone-label {
+      color: var(--coral);
+      font-weight: 700;
+    }
+
+    /* Timer (Tag 4) */
+    .timer-box {
+      text-align: center;
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      border: 1px solid var(--border-warm);
+    }
+
+    .timer-display {
+      font-family: var(--serif);
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-display.idle { color: var(--text-mute); }
+
+    .timer-btn {
+      background: var(--coral);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      min-height: 44px;
+    }
+    .timer-btn:hover { background: var(--coral-light); }
+    .timer-btn:active { transform: scale(0.97); }
+
+    /* Script builder (Tag 5, 7, 19) */
+    .script-builder {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .script-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-family: var(--sans);
+      font-size: 14.5px;
+      color: var(--text);
+      transition: border-color 0.2s;
+      resize: vertical;
+      min-height: 60px;
+      line-height: 1.5;
+    }
+
+    .script-input:focus { outline: none; border-color: var(--coral); }
+
+    .script-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .script-prefix {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--coral);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    /* Examples block — clickable to insert */
+    .examples {
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      border: 1px dashed var(--border);
+      margin-top: 10px;
+    }
+
+    .examples-title {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .example-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-soft);
+      padding: 8px 12px;
+      border-left: 2px solid var(--coral-soft);
+      margin-bottom: 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .example-quote:hover {
+      background: var(--coral-bg);
+      border-left-color: var(--coral);
+    }
+
+    .example-quote:last-child { margin-bottom: 0; }
+
+    /* Ja/Nein-Bilanz (Tag 12) */
+    .balance-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 500px) {
+      .balance-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .balance-area {
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      border: 1px solid var(--border-warm);
+    }
+
+    .balance-area-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .balance-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      background: var(--bg-soft);
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: var(--text);
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .balance-textarea:focus { outline: none; border-color: var(--coral); background: white; }
+
+    /* Vision Board (Tag 20) */
+    .vision-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vision-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .vision-num {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--coral);
+      width: 28px;
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .vision-input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14.5px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .vision-input:focus { outline: none; border-color: var(--coral); }
+
+    /* Catastrophe (Tag 17) — chained inputs */
+    .catastrophe-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .cat-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding-bottom: 12px;
+      position: relative;
+    }
+
+    .cat-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 14px; top: 36px;
+      width: 2px;
+      height: calc(100% - 24px);
+      background: var(--coral-soft);
+    }
+
+    .cat-step-icon {
+      width: 28px; height: 28px;
+      background: var(--coral-soft);
+      color: var(--coral);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .cat-step-body {
+      flex: 1;
+      padding-top: 2px;
+    }
+
+    .cat-step-prompt {
+      font-size: 12.5px;
+      color: var(--text-mute);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    .cat-step-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .cat-step-input:focus { outline: none; border-color: var(--coral); }
+
+    /* Mantra card (Tag 16) */
+    .mantra-card {
+      background: linear-gradient(135deg, white 0%, var(--coral-bg) 100%);
+      border: 2px solid var(--coral-soft);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .mantra-card::before, .mantra-card::after {
+      font-family: var(--serif);
+      font-size: 48px;
+      color: var(--coral-soft);
+      position: absolute;
+      line-height: 1;
+    }
+
+    .mantra-card::before {
+      content: '"';
+      top: 10px; left: 14px;
+    }
+    .mantra-card::after {
+      content: '"';
+      bottom: -10px; right: 14px;
+    }
+
+    .mantra-input {
+      width: 100%;
+      min-height: 60px;
+      padding: 8px;
+      border: none;
+      background: transparent;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--text);
+      text-align: center;
+      resize: none;
+      line-height: 1.4;
+    }
+
+    .mantra-input:focus { outline: none; }
+
+    /* Note area */
+    .note-area {
+      width: 100%;
+      min-height: 130px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text);
+      resize: vertical;
+      line-height: 1.6;
+      font-style: italic;
+      transition: border-color 0.2s;
+    }
+
+    .note-area:focus { outline: none; border-color: var(--coral); }
+
+    .save-indicator {
+      font-size: 12px;
+      color: var(--text-mute);
+      margin-top: 8px;
+      height: 16px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .save-indicator.visible { opacity: 1; }
+    .save-indicator.saved { color: var(--sage); }
+
+    /* Done button */
+    .done-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--coral);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.2s, transform 0.1s;
+      min-height: 52px;
+      box-shadow: 0 4px 12px rgba(232, 94, 62, 0.25);
+    }
+    .done-btn:hover { background: var(--coral-light); }
+    .done-btn:active { transform: scale(0.99); }
+
+    .done-btn.completed {
+      background: var(--sage-soft);
+      color: var(--sage);
+      box-shadow: none;
+      border: 2px solid var(--sage);
+    }
+
+    /* Day nav */
+    .day-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-warm);
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      min-height: 44px;
+    }
+    .nav-btn:hover:not(:disabled) { background: var(--bg-soft); }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ============ MODAL ============ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(61, 37, 21, 0.55);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      padding: 0;
+      animation: overlayIn 0.2s ease;
+      backdrop-filter: blur(3px);
+    }
+    .modal-overlay.active { display: flex; }
+    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      background: var(--card);
+      border-radius: 24px 24px 0 0;
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px 22px 32px;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (min-width: 600px) {
+      .modal-overlay { align-items: center; padding: 20px; }
+      .modal { border-radius: 24px; padding: 32px 32px 36px; }
+    }
+
+    @keyframes modalIn {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-handle {
+      width: 40px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 0 auto 18px;
+    }
+
+    .modal h2 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .modal-intro {
+      font-size: 14.5px;
+      color: var(--text-soft);
+      text-align: center;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .sos-tool {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-warm);
+      position: relative;
+    }
+
+    .sos-tool.featured {
+      border-color: var(--coral);
+      background: linear-gradient(135deg, white 0%, var(--coral-bg) 100%);
+    }
+
+    .sos-tool-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sos-tool-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .sos-tool-page {
+      font-size: 11.5px;
+      color: var(--coral);
+      font-weight: 600;
+      background: var(--coral-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .sos-tool-body {
+      font-size: 14.5px;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    .modal-close {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-soft);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 10px;
+      min-height: 48px;
+    }
+    .modal-close:hover { background: var(--bg-soft); }
+
+    /* ============ COMPLETION ============ */
+    .completion {
+      display: none;
+      background: linear-gradient(135deg, white 0%, var(--coral-bg) 100%);
+      border-radius: var(--radius-lg);
+      padding: 36px 26px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 2px solid var(--coral-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .completion.visible { display: block; }
+
+    .completion::before, .completion::after {
+      content: '';
+      position: absolute;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .completion::before {
+      top: -40px; left: -40px;
+      background: radial-gradient(circle, var(--coral-soft) 0%, transparent 70%);
+    }
+    .completion::after {
+      bottom: -40px; right: -40px;
+      background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    }
+
+    .completion-emoji {
+      font-size: 56px;
+      margin-bottom: 16px;
+      display: inline-block;
+      animation: celebrate 2s ease infinite;
+    }
+    @keyframes celebrate {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .completion h2 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.25;
+      position: relative;
+    }
+
+    .completion p {
+      font-size: 15.5px;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      line-height: 1.65;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .completion-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 22px;
+      position: relative;
+    }
+
+    @media (min-width: 600px) {
+      .completion-actions { flex-direction: row; justify-content: center; }
+    }
+
+    .completion-btn {
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      min-height: 46px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+    }
+    .completion-btn:hover { background: var(--bg-soft); }
+    .completion-btn:active { transform: scale(0.98); }
+    .completion-btn.primary {
+      background: var(--coral);
+      color: white;
+      border-color: var(--coral);
+    }
+    .completion-btn.primary:hover { background: var(--coral-light); }
+    .completion-btn.danger { color: #B04030; }
+
+    /* ============ NOTES OVERVIEW ============ */
+    .notes-overview {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-warm);
+    }
+    .notes-overview.active { display: block; }
+
+    .notes-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-warm);
+      gap: 12px;
+    }
+
+    .notes-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .note-entry {
+      background: var(--bg-soft);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid var(--coral);
+    }
+
+    .note-entry-num {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--coral);
+      margin-bottom: 4px;
+    }
+
+    .note-entry-name {
+      font-size: 13px;
+      color: var(--text-mute);
+      margin-bottom: 10px;
+    }
+
+    .note-entry-text {
+      font-size: 14.5px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      font-style: italic;
+    }
+
+    .empty-notes {
+      text-align: center;
+      padding: 36px 20px;
+      color: var(--text-mute);
+      font-size: 15px;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      margin-top: 48px;
+      padding: 32px 20px 0;
+      border-top: 1px solid var(--border-warm);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-mute);
+      line-height: 1.7;
+    }
+
+    .footer p { margin-bottom: 8px; }
+    .footer a {
+      color: var(--text-soft);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer a:hover { color: var(--coral); }
+
+    .footer-buy {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 10px 22px;
+      background: var(--coral);
+      color: white !important;
+      text-decoration: none !important;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13.5px;
+      transition: background 0.2s;
+    }
+    .footer-buy:hover { background: var(--coral-light); }
+
+    .reset-link {
+      background: none;
+      border: none;
+      color: var(--text-mute);
+      font-family: var(--sans);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 8px;
+      margin-top: 8px;
+    }
+    .reset-link:hover { color: var(--text-soft); }
+
+    #day-detail-anchor { scroll-margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <button class="sos-button" onclick="openModal()" aria-label="Sofort-Hilfe öffnen">
+        Sofort-Hilfe
+      </button>
+      <div class="hero-content">
+        <!-- Cover-Link: Sobald das Buch veröffentlicht ist, ersetze das <div class="hero-cover-link"> durch:
+             <a href="AMAZON-URL-HIER" target="_blank" rel="noopener" class="hero-cover-link" aria-label="Zum Buch auf Amazon"> ... </a>
+             (Bitte den schließenden Tag auch entsprechend auf </a> ändern.) -->
+        <div class="hero-cover-link">
+          <img src="cover.jpg" alt="Buchcover: Nicht alle. Nicht immer. Nicht alles." class="hero-cover">
+        </div>
+        <div class="hero-text">
+          <div class="hero-eyebrow">Dein 21-Tage-Begleiter</div>
+          <h1>Nicht alle. Nicht&nbsp;immer. <span class="accent">Nicht alles.</span></h1>
+          <div class="hero-author">von Lea Hoffmann</div>
+          <p class="hero-tagline">Eine konkrete Übung pro Tag. Direkt aus dem Buch. Kein Druck, keine Erinnerungen.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ KOMPASS / 3 SÄULEN ============ -->
+    <div class="kompass">
+      <div class="kompass-pillar">
+        <div class="kompass-title">Nicht alle.</div>
+        <div class="kompass-desc">Du musst nicht für jeden verfügbar sein.</div>
+      </div>
+      <div class="kompass-pillar">
+        <div class="kompass-title">Nicht immer.</div>
+        <div class="kompass-desc">Du musst nicht sofort antworten.</div>
+      </div>
+      <div class="kompass-pillar">
+        <div class="kompass-title">Nicht alles.</div>
+        <div class="kompass-desc">Du bist nicht für alles zuständig.</div>
+      </div>
+    </div>
+
+    <!-- ============ INTRO BANNER ============ -->
+    <details class="intro-banner" id="intro-banner" open>
+      <summary>So funktioniert dein Begleiter</summary>
+      <div class="intro-content">
+        <p>Diese App ist kein Bonus zum Buch — sie ist der zweite Teil davon. Das Buch erklärt das Warum. Hier machst du das Tun.</p>
+        <ol>
+          <li>Tippe auf eine Tageszahl, um die Übung des Tages zu öffnen.</li>
+          <li>Lies sie und nutze das Werkzeug, das die App dir dafür gibt: Timer, Skripte, Checkliste, Bilanz.</li>
+          <li>Schreib deine Erfahrung ins Notizfeld — alles bleibt automatisch auf deinem Gerät.</li>
+          <li>Tippe auf „Heute geschafft“, wenn du fertig bist.</li>
+          <li>Brauchst du Hilfe in einer akuten Situation: <strong>Sofort-Hilfe-Button</strong> oben rechts.</li>
+        </ol>
+        <p>Diese App schickt dir keine Nachrichten. Du kommst, wenn du Zeit hast. Wenn du einen Tag auslässt, ist das okay.</p>
+      </div>
+    </details>
+
+    <!-- ============ PROGRESS ============ -->
+    <section class="progress-card">
+      <div class="progress-header">
+        <div class="progress-title">Dein Fortschritt</div>
+        <div class="progress-count"><strong id="progress-num">0</strong> von 21 Tagen</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- ============ COMPLETION ============ -->
+    <section class="completion" id="completion-section">
+      <div class="completion-emoji">🌿</div>
+      <h2>Du hast die 21 Tage geschafft.</h2>
+      <p>Das ist keine Kleinigkeit. Wenn du dein Leben lang Ja gesagt hast, sind 21 Tage zurück zu dir selbst ein echter Schritt.</p>
+      <p>Schau dir deine Notizen an. Welche Übungen haben für dich am meisten verändert? Welche Sätze nutzt du jetzt regelmäßig? Die bleiben bei dir.</p>
+      <div class="completion-actions">
+        <button class="completion-btn primary" onclick="showNotesOverview()">Notizen ansehen</button>
+        <button class="completion-btn danger" onclick="resetProgress()">Von vorne starten</button>
+      </div>
+    </section>
+
+    <!-- DAY DETAIL ANCHOR + CONTAINER -->
+    <div id="day-detail-anchor"></div>
+    <article class="day-detail" id="day-detail"></article>
+
+    <!-- NOTES OVERVIEW -->
+    <section class="notes-overview" id="notes-overview">
+      <div class="notes-head">
+        <h2 class="notes-title">Deine Notizen</h2>
+        <button class="completion-btn" onclick="hideNotesOverview()">← Zurück</button>
+      </div>
+      <div id="notes-list"></div>
+    </section>
+
+    <!-- ============ WEEKS ============ -->
+    <section id="weeks-container"></section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <!-- Cover-Link im Footer: Sobald das Buch veröffentlicht ist, ersetze den <div class="footer-cover-link"> durch:
+           <a href="AMAZON-URL-HIER" target="_blank" rel="noopener" class="footer-cover-link" aria-label="Buch auf Amazon ansehen"> ... </a>
+           Und nimm den Kommentar um den "Buch auf Amazon ansehen"-Button weg. -->
+      <div class="footer-cover-link">
+        <img src="cover.jpg" alt="Buchcover" class="footer-cover">
+      </div>
+      <p><em>„Nicht alle. Nicht immer. Nicht alles.“</em> von Lea Hoffmann</p>
+      <!-- Sobald das Buch veröffentlicht ist, diesen Block aktivieren:
+      <p>
+        <a href="AMAZON-URL-HIER" target="_blank" rel="noopener" class="footer-buy">Buch auf Amazon ansehen →</a>
+      </p>
+      -->
+      <p>Diese App speichert deine Daten nur lokal auf deinem Gerät. Keine Übermittlung an Server.</p>
+      <p>
+        <a href="https://munichpublishing.de/impressum" target="_blank" rel="noopener">Impressum</a>
+        &nbsp;·&nbsp;
+        <a href="https://munichpublishing.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      </p>
+      <button class="reset-link" onclick="resetProgress()">Fortschritt zurücksetzen</button>
+    </footer>
+
+  </div>
+
+  <!-- ============ SOS MODAL ============ -->
+  <div class="modal-overlay" id="sos-modal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal-handle"></div>
+      <h2>Sofort-Hilfe</h2>
+      <p class="modal-intro">Drei Werkzeuge für den Moment, in dem du gleich Ja sagen willst, obwohl dein Bauch Nein sagt.</p>
+
+      <div class="sos-tool featured">
+        <div class="sos-tool-head">
+          <span class="sos-tool-name">Die 5-Sekunden-Atempause</span>
+          <span class="sos-tool-page">Kap. 1</span>
+        </div>
+        <p class="sos-tool-body">Bevor du antwortest, atme einmal langsam durch den Mund aus. Zähl innerlich bis fünf. Du musst nichts sagen — die Stille darf da sein. Brauchst du einen Brücken-Satz: <em>„Moment, ich muss kurz überlegen.“</em></p>
+      </div>
+
+      <div class="sos-tool">
+        <div class="sos-tool-head">
+          <span class="sos-tool-name">Der Körper-Anker</span>
+          <span class="sos-tool-page">Kap. 1</span>
+        </div>
+        <p class="sos-tool-body">Spür beide Füße fest auf dem Boden. Drück leicht. Spür deine Fingerspitzen aneinander. Dein Nervensystem unterbricht den Automatismus, weil es etwas Konkretes zu verarbeiten bekommt.</p>
+      </div>
+
+      <div class="sos-tool">
+        <div class="sos-tool-head">
+          <span class="sos-tool-name">Der Verzögerungs-Satz</span>
+          <span class="sos-tool-page">Kap. 4</span>
+        </div>
+        <p class="sos-tool-body"><em>„Ich melde mich dazu.“</em> Vier Worte. Keine Erklärung, keine Entschuldigung. Du musst weder zusagen noch absagen — nur Zeit gewinnen. Den Rest entscheidest du später, in Ruhe.</p>
+      </div>
+
+      <button class="modal-close" onclick="closeModal()">Schließen</button>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // DATA: 21 DAYS — derived from manuscript body
+    // Each day has its own toolType for interactive UI
+    // ============================================
+    const daysData = [
+      {
+        day: 1, week: 1, pillar: 1,
+        title: "Die Bestandsaufnahme deiner Ja-Fallen",
+        chapter: "Einleitung — Schluss mit der Theorie",
+        exercise: "Nimm dir heute fünf Minuten und notiere jede Situation der letzten Woche, in der du Ja gesagt hast, obwohl dein Bauch Nein gesagt hat. Schreib nicht auf, warum du es getan hast. Schreib nur auf, wann und bei wem.",
+        why: "Bevor du etwas verändern kannst, musst du es sehen. Die meisten Ja-Reflexe laufen so schnell ab, dass das Bewusstsein gar nicht mitkommt. Beobachtung ist der erste Schritt zur Steuerung.",
+        reflection: "In welchen Momenten spüre ich die größte Diskrepanz zwischen dem, was ich sage, und dem, was ich fühle?",
+        tool: { type: "checklist", title: "Die fünf häufigsten Ja-Fallen", intro: "Falls dir das freie Schreiben gerade zu viel ist — hak ab, was zutrifft. Mehrfachauswahl ist okay.", items: [
+          "Bitte um Hilfe per WhatsApp/Telefon, ohne Bedenkzeit",
+          "Spontane Anfrage einer Freundin oder Bekannten",
+          "Zusatzaufgabe vom Job, die nicht in meine Kapazität passt",
+          "Familiäre Erwartung, die niemand mehr ausspricht",
+          "Treffen oder Verabredung, auf die ich keine Lust hatte"
+        ]}
+      },
+      {
+        day: 2, week: 1, pillar: 1,
+        title: "Das Commitment — Dein Warum",
+        chapter: "Einleitung — Dein Kompass für die nächsten 21 Tage",
+        exercise: "Formuliere in einem einzigen Satz, warum du aufhören willst, es allen recht zu machen. Nur ein Satz. Kein Essay, keine Analyse. Schreib ihn auf einen Zettel und kleb ihn an deinen Badezimmerspiegel.",
+        why: "Ein klares Warum trägt dich durch die Momente, in denen das alte Muster zurück will. Es muss nicht groß klingen — es muss wahr sein.",
+        reflection: "Welcher Satz fühlt sich beim Lesen so an, als würde mir jemand zustimmen, der mich gut kennt?",
+        tool: { type: "commitment", placeholder: "Ich will …", examples: [
+          "Ich will abends noch Energie für mich übrig haben.",
+          "Ich will aufhören, mich nach jedem Telefonat leer zu fühlen.",
+          "Ich will mich morgens nicht mehr fürchten, mein Handy anzuschauen."
+        ]}
+      },
+      {
+        day: 3, week: 1, pillar: 1,
+        title: "Scan deiner körperlichen Stresssignale",
+        chapter: "Kapitel 1 — Die entscheidenden Sekunden vor dem Ja",
+        exercise: "Heute lernst du deinen persönlichen Alarm kennen. Bei der nächsten Bitte achte bewusst auf vier Körperzonen: Kehle, Schultern, Bauch und Hände. Du musst nichts anders machen. Deine einzige Aufgabe ist wahrnehmen.",
+        why: "Dein Körper meldet die Diskrepanz zwischen Ja und Nein, bevor dein Kopf sie verarbeitet hat. Allein das Wahrnehmen schiebt einen Keil zwischen Reiz und Reaktion.",
+        reflection: "Wo genau in meinem Körper meldet sich das Nein zuerst?",
+        tool: { type: "bodymap", intro: "Tipp die Zonen an, in denen du heute etwas gespürt hast. Du kannst mehrere wählen.", zones: [
+          { id: "kehle", icon: "🌬️", label: "Kehle" },
+          { id: "schultern", icon: "🤲", label: "Schultern" },
+          { id: "bauch", icon: "🌀", label: "Bauch" },
+          { id: "haende", icon: "✋", label: "Hände" }
+        ]}
+      },
+      {
+        day: 4, week: 1, pillar: 2,
+        title: "Die 5-Sekunden-Atempause",
+        chapter: "Kapitel 1 — Die Kunst der winzigen Lücke",
+        exercise: "Heute übst du die Lücke ein einziges Mal. Bei der nächsten Anfrage hältst du fünf Sekunden inne, bevor du antwortest. Atme einmal bewusst aus. Wenn die Stille unerträglich wird: „Moment, ich muss kurz überlegen.“",
+        why: "Es geht nicht darum, dass die Spannung verschwindet. Es geht darum, dass du sie aushalten kannst, ohne sofort durch ein Ja Erleichterung zu suchen.",
+        reflection: "Was passiert in meinem Körper, wenn ich die Spannung aushalte, statt sie sofort aufzulösen?",
+        tool: { type: "timer", duration: 5, intro: "Tipp den Knopf, und übe die fünf Sekunden bewusst — am besten gerade jetzt." }
+      },
+      {
+        day: 5, week: 1, pillar: 1,
+        title: "Die Ich-Botschaft testen",
+        chapter: "Kapitel 2 — Grenzen am Küchentisch",
+        exercise: "Formuliere heute eine Grenze in deiner Partnerschaft als Ich-Botschaft. Die Struktur ist simpel: „Ich fühle mich [Gefühl], wenn [konkrete Situation]. Ich brauche [konkreter Wunsch].“ Keine Anklage, keine Vorwürfe.",
+        why: "Ich-Botschaften lassen Bedürfnisse aussprechen, ohne die andere Person in die Defensive zu drängen. Drei Sätze, die bei dir bleiben.",
+        reflection: "Was befürchte ich konkret, wenn ich diesen Satz ausspreche?",
+        tool: { type: "scripts", intro: "Bau deinen Satz Stück für Stück. Du kannst das Beispiel als Startpunkt nehmen.",
+          fields: [
+            { id: "feeling", label: "Ich fühle mich …", placeholder: "z.B. unter Druck, übergangen, allein gelassen" },
+            { id: "situation", label: "… wenn …", placeholder: "z.B. ich abends sofort gefragt werde, was wir essen" },
+            { id: "need", label: "Ich brauche …", placeholder: "z.B. zwanzig Minuten Ruhe, bevor wir planen" }
+          ],
+          examples: [
+            "Ich fühle mich unter Druck, wenn ich abends nach der Arbeit sofort gefragt werde, was wir essen. Ich brauche zwanzig Minuten Ruhe, bevor wir gemeinsam planen."
+          ]
+        }
+      },
+      {
+        day: 6, week: 1, pillar: 1,
+        title: "Nein zu einer Familien-Tradition",
+        chapter: "Kapitel 2 — Eltern, Kinder, Erwartungen",
+        exercise: "Heute lehnst du eine wiederkehrende Familien-Erwartung ab, die dich auslaugt. Keine große Sache. Vielleicht der sonntägliche Anruf, vielleicht eine Aufgabe, die immer an dir hängt. Ein Satz, ohne Begründung.",
+        why: "Familien-Skripte halten sich, weil niemand sie laut hinterfragt. Ein einzelner ruhiger Satz reicht oft, um die unausgesprochene Regel sichtbar zu machen.",
+        reflection: "Welche Familien-Erwartung halte ich am Leben, obwohl sie mich auslaugt?",
+        tool: { type: "scripts", intro: "Formuliere deinen Satz für heute. Kurz, klar, ohne Entschuldigung.",
+          fields: [
+            { id: "satz", label: "Dein Satz", placeholder: "Ein Satz reicht. Ohne „weil“.", multiline: true }
+          ],
+          examples: [
+            "Das übernehme ich diesmal nicht.",
+            "Dieses Mal mache ich es anders.",
+            "Ich komme gern, aber die Organisation gebe ich ab."
+          ]
+        }
+      },
+      {
+        day: 7, week: 1, pillar: 3,
+        title: "Delegation im Job",
+        chapter: "Kapitel 3 — Der Ja-Sager im Team-Meeting",
+        exercise: "Heute gibst du eine Zusatzaufgabe mit einem Ressourcen-Argument zurück oder bittest um Priorisierung. Such dir eine Aufgabe, die nicht zu dir gehört oder deine Kapazität sprengt. Keine Entschuldigung — eine sachliche Frage.",
+        why: "Im Job funktioniert Grenzziehung selten über Ablehnung. Sie funktioniert über Sichtbarmachen von Kapazität. Du verteidigst nicht dich selbst — du machst die Realität sichtbar.",
+        reflection: "Wo verwechsle ich berufliches Engagement mit Grenzenlosigkeit?",
+        tool: { type: "scripts", intro: "Wähle eine Vorlage — sachlich, kooperativ oder kurz-knapp — und passe sie an deine Situation an.",
+          fields: [
+            { id: "satz", label: "Dein Satz für heute", placeholder: "Tippe einen Beispielsatz an, um ihn zu übernehmen", multiline: true }
+          ],
+          examples: [
+            "Ich kann das übernehmen. Welches meiner aktuellen Projekte soll ich dafür zurückstellen?",
+            "Ich schaffe das bis Freitag, wenn ich die andere Deadline auf nächste Woche verschiebe. Passt das?",
+            "Für diesen Umfang brauche ich Unterstützung. Wer kann mir zuarbeiten?"
+          ]
+        }
+      },
+      {
+        day: 8, week: 2, pillar: 1,
+        title: "Absage ohne Rechtfertigung",
+        chapter: "Kapitel 3 — Freundschaftsdienste und Energiefresser",
+        exercise: "Sag heute ein Treffen oder einen Gefallen ab, ohne einen Grund zu nennen. Keine Erklärung, kein „weil“. Nur der Satz selbst. „Das passt bei mir diese Woche leider nicht.“ Punkt.",
+        why: "Jede Erklärung gibt dem Gegenüber eine Lücke, in der es deine Begründung anfechten kann. Kein Grund — kein Streit über den Grund.",
+        reflection: "Was ist der kürzeste Satz, mit dem ich heute absagen könnte, ohne mich zu erklären?",
+        tool: { type: "scripts", intro: "Pick einen Absage-Satz, der zu dir passt. Du musst ihn nicht erfinden.",
+          fields: [
+            { id: "satz", label: "Dein Absage-Satz", placeholder: "So kurz wie möglich.", multiline: true }
+          ],
+          examples: [
+            "Das passt bei mir diese Woche leider nicht.",
+            "Schaffe ich gerade nicht, danke aber fürs Fragen.",
+            "Ich kann dir nicht zusagen."
+          ]
+        }
+      },
+      {
+        day: 9, week: 2, pillar: 2,
+        title: "Flugmodus-Zeiten",
+        chapter: "Kapitel 4 — Das Diktat der Sofortigkeit",
+        exercise: "Schalt dein Handy heute für eine Stunde bewusst auf Flugmodus. Nicht beim Schlafen oder Duschen — in einer Stunde, in der du normalerweise erreichbar wärst. Mittagspause oder erste Stunde nach Feierabend.",
+        why: "Ständige Erreichbarkeit ist ein erlernter Reflex. Eine Stunde Unerreichbarkeit zeigt, wie tief er sitzt — und dass nichts passiert.",
+        reflection: "Wie fühlt sich die erste Minute Unerreichbarkeit an? Wie die zwanzigste?",
+        tool: { type: "checklist", title: "Mein Beobachtungs-Protokoll", intro: "Hak ab, was du in deiner Stunde Flugmodus bei dir bemerkt hast.", items: [
+          "Ich habe automatisch zum Handy gegriffen.",
+          "Ich war erst nervös, dann ruhiger.",
+          "Niemand hat sich beschwert.",
+          "Ich habe etwas getan, wozu ich sonst nie komme.",
+          "Es fühlte sich kürzer an als gedacht."
+        ]}
+      },
+      {
+        day: 10, week: 2, pillar: 2,
+        title: "Die 24-Stunden-Regel",
+        chapter: "Kapitel 4 — Digitale Grenzen setzen",
+        exercise: "Bitte heute bei mindestens einer Anfrage um einen Tag Bedenkzeit. „Lass mich bis morgen darüber nachdenken, dann gebe ich dir Bescheid.“ Fertig. Kein Grund, kein „ich muss nur kurz schauen“.",
+        why: "Je alltäglicher die Anfrage, desto besser — weil du den Muskel genau dort trainierst, wo er am häufigsten gebraucht wird.",
+        reflection: "Wann habe ich das letzte Mal um Bedenkzeit gebeten, statt sofort zu antworten?",
+        tool: { type: "scripts", intro: "Ein Satz, drei Varianten — wähle, was zu dir passt.",
+          fields: [
+            { id: "satz", label: "Dein Bedenkzeit-Satz", placeholder: "Tippe einen Beispielsatz an, um ihn zu übernehmen.", multiline: true }
+          ],
+          examples: [
+            "Lass mich bis morgen darüber nachdenken, dann gebe ich dir Bescheid.",
+            "Das beantworte ich dir morgen.",
+            "Ich melde mich morgen dazu."
+          ]
+        }
+      },
+      {
+        day: 11, week: 2, pillar: 2,
+        title: "Benachrichtigungen aussortieren",
+        chapter: "Kapitel 4 — Digitale Grenzen setzen",
+        exercise: "Nimm dir fünfzehn Minuten und geh die Push-Benachrichtigungen deines Handys durch. Wichtig heißt: Anrufe und Nachrichten von Menschen, die dich im Notfall erreichen müssen. Alles andere kann auf stumm.",
+        why: "Du löschst keine Apps. Du legst nur fest, wann du sie öffnest, statt dich anstupsen zu lassen. Fünfzehn Minuten sparen täglich Dutzende Unterbrechungen.",
+        reflection: "Welche App hat mich heute unterbrochen, obwohl ich sie freiwillig nicht geöffnet hätte?",
+        tool: { type: "checklist", title: "Inventur der digitalen Störungen", intro: "Hak ab, was du heute auf stumm gestellt hast.", items: [
+          "Social-Media-Apps (Instagram, TikTok, …)",
+          "News-Apps und Newsletter",
+          "Shopping-Apps und Werbe-Mails",
+          "Gruppenchats ohne dringende Funktion",
+          "Spiele-Benachrichtigungen"
+        ]}
+      },
+      {
+        day: 12, week: 2, pillar: 3,
+        title: "Die Ja/Nein-Bilanz",
+        chapter: "Kapitel 5 — Das Fass ohne Boden: Deine Energie",
+        exercise: "Schreib auf, wofür du regelmäßig Ja sagst, obwohl es dich auslaugt. Nur Aufgaben, die mindestens einmal pro Woche anfallen. Vier Lebensbereiche. Ohne zu bewerten.",
+        why: "Diese Liste ist kein Zeugnis deines Versagens. Sie zeigt schlicht, was gerade auf deinen Schultern liegt. Bevor du etwas verändern kannst, brauchst du den ehrlichen Stand.",
+        reflection: "Welche Aufgaben auf meiner Liste mache ich nur, weil jemand anderes sie erwartet?",
+        tool: { type: "balance", intro: "Was zieht dir Energie ab — in jedem der vier Bereiche? Ein Stichwort pro Eintrag reicht.",
+          areas: [
+            { id: "beruf", label: "Beruf", icon: "💼" },
+            { id: "familie", label: "Familie", icon: "🏠" },
+            { id: "freundinnen", label: "Freundinnen", icon: "👯" },
+            { id: "partnerschaft", label: "Partnerschaft", icon: "💞" }
+          ]
+        }
+      },
+      {
+        day: 13, week: 2, pillar: 3,
+        title: "Eine Aufgabe delegieren oder streichen",
+        chapter: "Kapitel 5 — Dein JA zu dir selbst",
+        exercise: "Schau dir deine Liste von Tag 12 an. Wähl eine einzige Aufgabe, bei der du spürst: das muss nicht bei mir hängen. Dann entscheide: delegieren oder streichen. Beides ist okay.",
+        why: "Mental Load wandert dorthin, wo am wenigsten Widerstand kommt. Eine klare Rückgabe ist kein Egoismus — sie korrigiert eine schiefe Verteilung.",
+        reflection: "Für welche Probleme anderer fühle ich mich verantwortlich, obwohl sie mir nicht gehören?",
+        tool: { type: "scripts", intro: "Beschreib die Aufgabe und entscheide, was du heute mit ihr machst.",
+          fields: [
+            { id: "aufgabe", label: "Die Aufgabe", placeholder: "z.B. Wocheneinkauf für die ganze Familie planen" },
+            { id: "entscheidung", label: "Heute gebe ich ab oder streiche", placeholder: "An wen? Oder: streichen", multiline: true }
+          ],
+          examples: []
+        }
+      },
+      {
+        day: 14, week: 2, pillar: 3,
+        title: "Die Stunde für dich",
+        chapter: "Kapitel 5 — Dein JA zu dir selbst",
+        exercise: "Trag eine Stunde in deinen Kalender ein, die nur dir gehört. Wie einen Arzttermin. Wenn jemand fragt: „Da habe ich schon einen Termin.“ Kein Erklären, kein Rechtfertigen. Der Termin bist du.",
+        why: "Wenn du deine Zeit deklarierst, statt um sie zu bitten, verschiebst du den Maßstab. Eine Stunde reicht, damit der Reflex „andere zuerst“ ins Wanken kommt.",
+        reflection: "Wofür würde ich diese Stunde nutzen, wenn ich sie keinem Zweck erklären müsste?",
+        tool: { type: "commitment", placeholder: "z.B. Donnerstag, 19–20 Uhr, Spaziergang ohne Handy", examples: [
+          "Donnerstag, 19–20 Uhr: Spaziergang ohne Handy",
+          "Sonntag, 10–11 Uhr: Lesen mit Kaffee, niemand stört",
+          "Mittwoch in der Mittagspause: Park, allein"
+        ], label: "Mein Termin mit mir" }
+      },
+      {
+        day: 15, week: 3, pillar: 1,
+        title: "Gefühle beobachten",
+        chapter: "Kapitel 6 — Wenn das Schuldgefühl piept",
+        exercise: "Schreib nach jedem Nein, das Schuldgefühle auslöst, zwei Dinge auf: Was genau befürchte ich? Und einen Tag später: Was ist tatsächlich eingetreten? Zwei Minuten, nicht mehr.",
+        why: "Erfahrungsgemäß bewahrheiten sich die befürchteten Konsequenzen selten. Das schwarz auf weiß zu sehen, verändert mehr als jede Vernunft-Argumentation.",
+        reflection: "Was hat sich an meiner Reaktion verändert, seit ich die Befürchtung neben die Realität gestellt habe?",
+        tool: { type: "scripts", intro: "Zwei Felder. Heute füllst du das obere. Morgen kehrst du zurück und füllst das untere.",
+          fields: [
+            { id: "befuerchtung", label: "Was ich befürchte", placeholder: "„Sie denkt jetzt, ich bin eine schlechte Freundin.“", multiline: true },
+            { id: "realitaet", label: "Was wirklich passiert ist", placeholder: "(Morgen ausfüllen)", multiline: true }
+          ],
+          examples: []
+        }
+      },
+      {
+        day: 16, week: 3, pillar: 1,
+        title: "Dein Mantra für nach dem Nein",
+        chapter: "Kapitel 7 — Erste Hilfe bei Rückschlägen",
+        exercise: "Formuliere einen liebevollen Satz, den du dir nach jedem Nein sagst. Er muss sich wahr anfühlen, nicht aufgesetzt. Schreib ihn auf, trag ihn bei dir.",
+        why: "Wenn der Rauchmelder piepst, brauchst du keinen klugen Gedanken, sondern einen Ankerpunkt. Ein vorbereiteter Satz ersetzt das innere Suchen genau dann, wenn du keine Kapazität hast.",
+        reflection: "Welcher Satz gibt mir Halt, wenn das Schuldgefühl am lautesten ist?",
+        tool: { type: "mantra", placeholder: "Schreib deinen Satz hier hinein …", examples: [
+          "Ich darf für mich sorgen, auch wenn es sich noch ungewohnt anfühlt.",
+          "Mein Nein schützt meine Energie, und das ist gut so.",
+          "Ich habe auf mich gehört. Das war mutig.",
+          "Ich bin keine schlechte Person, weil ich eine Grenze habe."
+        ]}
+      },
+      {
+        day: 17, week: 3, pillar: 1,
+        title: "Der Katastrophen-Check",
+        chapter: "Kapitel 7 — Erste Hilfe bei Rückschlägen",
+        exercise: "Denk dein schlimmstes „Was wäre wenn“-Szenario zu Ende. Schreib die Befürchtung auf. Dann frag dich: Was wäre dann? Und dann? Und dann? Geh mindestens drei Stufen tief.",
+        why: "Das Szenario verliert an Macht, wenn du es ins Licht holst. Meistens endet die Kette weit harmloser als der erste Gedanke. Du schaust das Monster im Schrank bei Licht an.",
+        reflection: "Was ist das Schlimmste, das realistisch passiert, wenn meine Befürchtung wahr wird?",
+        tool: { type: "catastrophe", intro: "Schreib auf, was du befürchtest. Dann beantworte dreimal: Was wäre dann?",
+          steps: [
+            { id: "fear", prompt: "Deine Befürchtung", placeholder: "z.B. „Meine Chefin stuft mich als weniger belastbar ein.“" },
+            { id: "then1", prompt: "Was wäre dann?", placeholder: "z.B. „Dann bekomme ich eine schlechtere Bewertung.“" },
+            { id: "then2", prompt: "Und dann?", placeholder: "z.B. „Dann werde ich vielleicht nicht befördert.“" },
+            { id: "then3", prompt: "Und dann?", placeholder: "z.B. „Dann bleibe ich auf meiner jetzigen Position.“" }
+          ]
+        }
+      },
+      {
+        day: 18, week: 3, pillar: 3,
+        title: "Analyse eines Rückfalls",
+        chapter: "Kapitel 7 — Vom Rückschlag zur neuen Routine",
+        exercise: "Nimm dir ein aktuelles Ja-Versagen und analysiere es ohne Urteil. Du bist Forscherin, nicht Richterin. Drei Fragen, eine Seite, kein Aufsatz.",
+        why: "Wenn du die drei Fragen ehrlich beantwortest, stellst du fast immer fest, dass der Rückfall einem Muster folgt. Wenn du das Muster kennst, hast du beim nächsten Mal einen Vorsprung.",
+        reflection: "Welches Muster zeigt sich, wenn ich mir die letzten drei Rückfälle nebeneinander anschaue?",
+        tool: { type: "scripts", intro: "Drei Fragen, ehrlich beantwortet. Kein Selbstvorwurf — du arbeitest mit dir, nicht gegen dich.",
+          fields: [
+            { id: "ausloeser", label: "1. Was war der Auslöser?", placeholder: "Wer hat dich gefragt? Wann? Warst du vorbereitet oder überrumpelt?", multiline: true },
+            { id: "koerper", label: "2. Was ist in deinem Körper passiert?", placeholder: "Hast du den Stressreflex gespürt? Zugeschnürte Kehle? Flaues Gefühl?", multiline: true },
+            { id: "gebraucht", label: "3. Was hättest du gebraucht, um anders zu reagieren?", placeholder: "Mehr Zeit? Einen vorbereiteten Satz? Die Erlaubnis, „Ich melde mich“ zu sagen?", multiline: true }
+          ],
+          examples: []
+        }
+      },
+      {
+        day: 19, week: 3, pillar: 1,
+        title: "Das Salami-Nein ausprobieren",
+        chapter: "Kapitel 7 — Das Nachbeben korrigieren",
+        exercise: "Nimm ein aktuelles voreiliges Ja und wandle es in ein Teil-Nein um. Oder, wenn du dich bereit fühlst, widerrufe es freundlich und komplett. Beides zählt.",
+        why: "Das Salami-Nein trainiert dein Nervensystem schrittweise. Du gewöhnst dich an das Gefühl, weniger zu geben als erwartet, und merkst dabei, dass die Welt nicht stehen bleibt.",
+        reflection: "Wo kann ich weniger geben, ohne ganz abzulehnen?",
+        tool: { type: "scripts", intro: "Drei Formulierungen für drei Situationen. Wähle die, die zu deiner aktuellen Situation passt.",
+          fields: [
+            { id: "satz", label: "Dein Salami-Satz", placeholder: "Tippe ein Beispiel an, um es zu übernehmen.", multiline: true }
+          ],
+          examples: [
+            "Ich kann den Samstag doch nicht komplett übernehmen, aber ich komme gerne von 10 bis 12 Uhr.",
+            "Ich schaffe es zeitlich nicht, das ganze Protokoll zu schreiben, aber ich kann die Stichpunkte liefern.",
+            "Ich komme zum Geburtstag, aber ich bleibe nur bis acht."
+          ]
+        }
+      },
+      {
+        day: 20, week: 3, pillar: 3,
+        title: "Die Role-Model-Übung",
+        chapter: "Kapitel 8 — Vom Plan zur Gewohnheit",
+        exercise: "Stell dir die Frau vor, die du in sechs Monaten sein willst. Wie sitzt sie? Wie antwortet sie, wenn jemand etwas von ihr will? Wie fühlt sich ihr Sonntag an? Beschreib sie in fünf Sätzen.",
+        why: "Identität läuft der Gewohnheit voraus. Wenn du dich als jemand siehst, die ihre Grenzen schützt, wird das Nein zum logischen Ausdruck deines Selbstbilds, statt zum täglichen Kampf.",
+        reflection: "Was würde die Frau, die ich in sechs Monaten sein will, heute anders machen als ich?",
+        tool: { type: "vision", intro: "Fünf Sätze. Schreib sie in der Du-Form über dich oder in der Sie-Form über sie — wie es sich richtiger anfühlt.", count: 5 }
+      },
+      {
+        day: 21, week: 3, pillar: 3,
+        title: "Dein Abschluss-Ritual",
+        chapter: "Kapitel 8 — Vom Plan zur Gewohnheit",
+        exercise: "Formuliere drei persönliche Leitsätze. Drei Sätze, die deine Grenzen beschreiben — so, wie sie jetzt sind. Keine Allgemeinplätze. Sätze aus deiner konkreten Erfahrung der letzten Wochen.",
+        why: "Drei Sätze aus deiner Erfahrung sind belastbarer als jedes Mantra aus einem Ratgeber. Sie tragen dich, weil du weißt, wo sie herkommen — und weil du sie wahr gemacht hast.",
+        reflection: "Wer bin ich jetzt, nach diesen einundzwanzig Tagen, und was hat sich in meinem Selbstbild verschoben?",
+        tool: { type: "vision", intro: "Deine drei Leitsätze. Aus eigener Erfahrung. Keine Sprüche.", count: 3, examples: [
+          "Ich helfe, wenn ich Kapazität habe, und sage es ehrlich, wenn nicht.",
+          "Mein Sonntag gehört mir, und daran ändert sich nichts.",
+          "Wenn jemand enttäuscht ist, halte ich das aus, ohne mich zu verbiegen."
+        ]}
+      }
+    ];
+
+    const pillars = {
+      1: { name: 'NICHT ALLE', color: 'coral' },
+      2: { name: 'NICHT IMMER', color: 'sage' },
+      3: { name: 'NICHT ALLES', color: 'gold' }
+    };
+
+    // ============================================
+    // STATE & STORAGE
+    // ============================================
+    const STORAGE_KEY = 'nichtalle_data';
+    const STATE_VERSION = 2;
+
+    let state = {
+      version: STATE_VERSION,
+      completedDays: [],
+      notes: {},
+      toolData: {}, // per-day tool state: toolData[dayNum] = {...}
+      lastVisited: null,
+      currentDay: null
+    };
+
+    let saveTimeout = null;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state = { ...state, ...parsed };
+          if (!Array.isArray(state.completedDays)) state.completedDays = [];
+          if (typeof state.notes !== 'object' || state.notes === null) state.notes = {};
+          if (typeof state.toolData !== 'object' || state.toolData === null) state.toolData = {};
+        }
+      } catch (e) { console.warn('Load failed:', e); }
+    }
+
+    function saveState() {
+      try {
+        state.lastVisited = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) { console.warn('Save failed:', e); }
+    }
+
+    function debouncedSave(callback) {
+      if (saveTimeout) clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        saveState();
+        if (callback) callback();
+      }, 500);
+    }
+
+    function getToolData(dayNum) {
+      if (!state.toolData[dayNum]) state.toolData[dayNum] = {};
+      return state.toolData[dayNum];
+    }
+
+    // ============================================
+    // RENDER
+    // ============================================
+    function renderProgress() {
+      const completed = state.completedDays.length;
+      const percent = (completed / 21) * 100;
+      document.getElementById('progress-fill').style.width = percent + '%';
+      document.getElementById('progress-num').textContent = completed;
+
+      const completionSection = document.getElementById('completion-section');
+      if (completed === 21) completionSection.classList.add('visible');
+      else completionSection.classList.remove('visible');
+    }
+
+    function renderWeeks() {
+      const container = document.getElementById('weeks-container');
+      const weeks = [
+        { num: 1, label: 'Woche 1', title: 'Wahrnehmen und erste Pausen', range: [1, 7] },
+        { num: 2, label: 'Woche 2', title: 'Zeit, Energie, Mental Load', range: [8, 14] },
+        { num: 3, label: 'Woche 3', title: 'Schuldgefühle aushalten, Identität festigen', range: [15, 21] }
+      ];
+
+      container.innerHTML = weeks.map(week => {
+        const days = daysData.filter(d => d.day >= week.range[0] && d.day <= week.range[1]);
+        const cards = days.map(d => {
+          const completed = state.completedDays.includes(d.day);
+          const hasData = state.notes[d.day] || (state.toolData[d.day] && Object.keys(state.toolData[d.day]).length > 0);
+          const classes = ['day-card'];
+          if (completed) classes.push('completed');
+          else if (hasData) classes.push('visited');
+
+          const pillarColor = pillars[d.pillar].color;
+          const dotColor = pillarColor === 'coral' ? '#E85E3E' : pillarColor === 'sage' ? '#7A8B6F' : '#C89B5C';
+
+          return `
+            <div class="${classes.join(' ')}" onclick="openDay(${d.day})" role="button" tabindex="0"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDay(${d.day})}"
+                 aria-label="Tag ${d.day}: ${escapeHtml(d.title)}${completed ? ', erledigt' : ''}">
+              <div class="day-check" aria-hidden="true">✓</div>
+              <div>
+                <div class="day-num">${d.day}</div>
+                <div class="day-card-title">${escapeHtml(d.title)}</div>
+              </div>
+              <div class="day-pillar-dot" style="background:${dotColor}" title="${pillars[d.pillar].name}"></div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="week">
+            <div class="week-header">
+              <div class="week-label">${escapeHtml(week.label)}</div>
+              <div class="week-title">${escapeHtml(week.title)}</div>
+            </div>
+            <div class="day-grid">${cards}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      const div = document.createElement('div');
+      div.textContent = String(str);
+      return div.innerHTML;
+    }
+
+    // ============================================
+    // RENDER TOOL (per-day interactive widget)
+    // ============================================
+    function renderTool(day) {
+      const t = day.tool;
+      if (!t) return '';
+      const data = getToolData(day.day);
+
+      if (t.type === 'checklist') {
+        const items = t.items.map((item, i) => {
+          const checked = data['item_' + i] ? 'checked' : '';
+          return `
+            <label class="check-item">
+              <input type="checkbox" ${checked} onchange="updateToolData(${day.day}, 'item_${i}', this.checked)">
+              <span>${escapeHtml(item)}</span>
+            </label>
+          `;
+        }).join('');
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug</div>
+            <div class="tool-title">${escapeHtml(t.title)}</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="checklist">${items}</div>
+          </div>
+        `;
+      }
+
+      if (t.type === 'commitment') {
+        const value = data.text || '';
+        const examplesHtml = t.examples && t.examples.length ? `
+          <div class="examples">
+            <div class="examples-title">Beispiel-Sätze (tippen zum Übernehmen)</div>
+            ${t.examples.map(ex => `<div class="example-quote" onclick="insertExample(${day.day}, 'commitment-input-${day.day}', this.dataset.text)" data-text="${escapeHtml(ex)}">${escapeHtml(ex)}</div>`).join('')}
+          </div>
+        ` : '';
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug</div>
+            <div class="tool-title">${escapeHtml(t.label || 'Dein Satz')}</div>
+            <input type="text" class="commitment-input" id="commitment-input-${day.day}"
+                   placeholder="${escapeHtml(t.placeholder)}"
+                   value="${escapeHtml(value)}"
+                   oninput="updateToolData(${day.day}, 'text', this.value)">
+            ${examplesHtml}
+          </div>
+        `;
+      }
+
+      if (t.type === 'bodymap') {
+        const zonesHtml = t.zones.map(z => {
+          const active = data['zone_' + z.id] ? ' active' : '';
+          return `
+            <div class="body-zone${active}" onclick="toggleBodyZone(${day.day}, '${z.id}', this)">
+              <span class="body-zone-icon">${z.icon}</span>
+              <span class="body-zone-label">${escapeHtml(z.label)}</span>
+            </div>
+          `;
+        }).join('');
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Körperkarte</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="body-map">${zonesHtml}</div>
+          </div>
+        `;
+      }
+
+      if (t.type === 'timer') {
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Atempause-Timer</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="timer-box">
+              <div class="timer-display idle" id="timer-display-${day.day}">${t.duration}</div>
+              <button class="timer-btn" id="timer-btn-${day.day}" onclick="startTimer(${day.day}, ${t.duration})">5 Sekunden üben</button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (t.type === 'scripts') {
+        const fieldsHtml = t.fields.map(f => {
+          const value = data[f.id] || '';
+          const inputHtml = f.multiline
+            ? `<textarea class="script-input" id="script-${day.day}-${f.id}" placeholder="${escapeHtml(f.placeholder)}" oninput="updateToolData(${day.day}, '${f.id}', this.value)">${escapeHtml(value)}</textarea>`
+            : `<input type="text" class="script-input" id="script-${day.day}-${f.id}" placeholder="${escapeHtml(f.placeholder)}" value="${escapeHtml(value)}" oninput="updateToolData(${day.day}, '${f.id}', this.value)">`;
+          return `
+            <div>
+              <div class="script-label">${escapeHtml(f.label)}</div>
+              ${inputHtml}
+            </div>
+          `;
+        }).join('');
+
+        // Examples are inserted into the FIRST field
+        const firstFieldId = t.fields[0].id;
+        const examplesHtml = t.examples && t.examples.length ? `
+          <div class="examples">
+            <div class="examples-title">Vorlagen (tippen zum Übernehmen)</div>
+            ${t.examples.map(ex => `<div class="example-quote" onclick="insertExample(${day.day}, 'script-${day.day}-${firstFieldId}', this.dataset.text)" data-text="${escapeHtml(ex)}">${escapeHtml(ex)}</div>`).join('')}
+          </div>
+        ` : '';
+
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Skript-Werkstatt</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="script-builder">${fieldsHtml}</div>
+            ${examplesHtml}
+          </div>
+        `;
+      }
+
+      if (t.type === 'balance') {
+        const areasHtml = t.areas.map(a => {
+          const value = data['area_' + a.id] || '';
+          return `
+            <div class="balance-area">
+              <div class="balance-area-title">${a.icon} ${escapeHtml(a.label)}</div>
+              <textarea class="balance-textarea" placeholder="Was kostet dich Energie?" oninput="updateToolData(${day.day}, 'area_${a.id}', this.value)">${escapeHtml(value)}</textarea>
+            </div>
+          `;
+        }).join('');
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Ja/Nein-Bilanz</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="balance-grid">${areasHtml}</div>
+          </div>
+        `;
+      }
+
+      if (t.type === 'mantra') {
+        const value = data.mantra || '';
+        const examplesHtml = t.examples && t.examples.length ? `
+          <div class="examples">
+            <div class="examples-title">Inspiration (tippen zum Übernehmen)</div>
+            ${t.examples.map(ex => `<div class="example-quote" onclick="insertExample(${day.day}, 'mantra-input-${day.day}', this.dataset.text)" data-text="${escapeHtml(ex)}">${escapeHtml(ex)}</div>`).join('')}
+          </div>
+        ` : '';
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Deine Mantra-Karte</div>
+            <div class="mantra-card">
+              <textarea class="mantra-input" id="mantra-input-${day.day}"
+                        placeholder="${escapeHtml(t.placeholder)}"
+                        oninput="updateToolData(${day.day}, 'mantra', this.value)">${escapeHtml(value)}</textarea>
+            </div>
+            ${examplesHtml}
+          </div>
+        `;
+      }
+
+      if (t.type === 'catastrophe') {
+        const stepsHtml = t.steps.map((s, i) => {
+          const value = data[s.id] || '';
+          return `
+            <div class="cat-step">
+              <div class="cat-step-icon">${i === 0 ? '!' : '↓'}</div>
+              <div class="cat-step-body">
+                <div class="cat-step-prompt">${escapeHtml(s.prompt)}</div>
+                <textarea class="cat-step-input" placeholder="${escapeHtml(s.placeholder)}" oninput="updateToolData(${day.day}, '${s.id}', this.value)">${escapeHtml(value)}</textarea>
+              </div>
+            </div>
+          `;
+        }).join('');
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — Katastrophen-Check</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="catastrophe-chain">${stepsHtml}</div>
+          </div>
+        `;
+      }
+
+      if (t.type === 'vision') {
+        const rows = [];
+        for (let i = 1; i <= t.count; i++) {
+          const value = data['line_' + i] || '';
+          rows.push(`
+            <div class="vision-row">
+              <div class="vision-num">${i}.</div>
+              <input type="text" class="vision-input" id="vision-${day.day}-${i}"
+                     placeholder="Satz ${i} …"
+                     value="${escapeHtml(value)}"
+                     oninput="updateToolData(${day.day}, 'line_${i}', this.value)">
+            </div>
+          `);
+        }
+        const examplesHtml = t.examples && t.examples.length ? `
+          <div class="examples">
+            <div class="examples-title">Beispiele (tippen, um in Zeile 1 zu übernehmen)</div>
+            ${t.examples.map(ex => `<div class="example-quote" onclick="insertExample(${day.day}, 'vision-${day.day}-1', this.dataset.text)" data-text="${escapeHtml(ex)}">${escapeHtml(ex)}</div>`).join('')}
+          </div>
+        ` : '';
+        return `
+          <div class="tool">
+            <div class="tool-label">App-Werkzeug — ${day.day === 20 ? 'Vision Board' : 'Deine Leitsätze'}</div>
+            <p class="tool-intro">${escapeHtml(t.intro)}</p>
+            <div class="vision-list">${rows.join('')}</div>
+            ${examplesHtml}
+          </div>
+        `;
+      }
+
+      return '';
+    }
+
+    // ============================================
+    // TOOL INTERACTIONS
+    // ============================================
+    function updateToolData(dayNum, key, value) {
+      const data = getToolData(dayNum);
+      data[key] = value;
+      debouncedSave(() => {
+        showSaveIndicator(dayNum);
+        renderWeeks();
+      });
+    }
+
+    function toggleBodyZone(dayNum, zoneId, el) {
+      const data = getToolData(dayNum);
+      const key = 'zone_' + zoneId;
+      data[key] = !data[key];
+      el.classList.toggle('active');
+      debouncedSave(() => {
+        showSaveIndicator(dayNum);
+        renderWeeks();
+      });
+    }
+
+    function insertExample(dayNum, inputId, text) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+      el.value = text;
+      el.focus();
+      // Trigger input handler manually
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    let timerInterval = null;
+    function startTimer(dayNum, duration) {
+      if (timerInterval) return;
+      const display = document.getElementById('timer-display-' + dayNum);
+      const btn = document.getElementById('timer-btn-' + dayNum);
+      let remaining = duration;
+      display.classList.remove('idle');
+      display.textContent = remaining;
+      btn.disabled = true;
+      btn.textContent = 'Atme aus …';
+
+      timerInterval = setInterval(() => {
+        remaining--;
+        if (remaining > 0) {
+          display.textContent = remaining;
+        } else {
+          display.textContent = '✓';
+          clearInterval(timerInterval);
+          timerInterval = null;
+          btn.disabled = false;
+          btn.textContent = 'Nochmal üben';
+          setTimeout(() => {
+            if (display) {
+              display.textContent = duration;
+              display.classList.add('idle');
+            }
+          }, 2000);
+          // Mark tool as used
+          updateToolData(dayNum, 'used', true);
+        }
+      }, 1000);
+    }
+
+    function showSaveIndicator(dayNum) {
+      const ind = document.getElementById('save-indicator-' + dayNum);
+      if (!ind) return;
+      ind.textContent = 'Gespeichert ✓';
+      ind.classList.add('visible', 'saved');
+      setTimeout(() => ind.classList.remove('visible'), 1800);
+    }
+
+    // ============================================
+    // DAY DETAIL
+    // ============================================
+    function openDay(dayNum) {
+      hideNotesOverview();
+      const day = daysData.find(d => d.day === dayNum);
+      if (!day) return;
+
+      state.currentDay = dayNum;
+      const completed = state.completedDays.includes(dayNum);
+      const noteValue = state.notes[dayNum] || '';
+      const pillarName = pillars[day.pillar].name;
+
+      const detail = document.getElementById('day-detail');
+      detail.innerHTML = `
+        <div class="day-detail-head">
+          <div class="day-detail-meta">
+            <span class="dot"></span>
+            <span>Tag ${day.day}</span>
+            <span class="pillar">·</span>
+            <span class="pillar">${escapeHtml(pillarName)}</span>
+          </div>
+          <h2 class="day-detail-title">${escapeHtml(day.title)}</h2>
+          <div class="day-detail-chapter">${escapeHtml(day.chapter)}</div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Übung</div>
+          <div class="section-body">${escapeHtml(day.exercise)}</div>
+        </div>
+
+        ${renderTool(day)}
+
+        <div class="section">
+          <div class="section-label">Warum das funktioniert</div>
+          <div class="section-body">${escapeHtml(day.why)}</div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Reflexionsfrage</div>
+          <div class="reflection-box">${escapeHtml(day.reflection)}</div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Deine Notiz zum Tag</div>
+          <textarea class="note-area" id="note-${day.day}"
+                    placeholder="Was hast du heute beobachtet? Wie hat sich die Übung angefühlt?"
+                    oninput="handleNoteInput(${day.day}, this.value)">${escapeHtml(noteValue)}</textarea>
+          <div class="save-indicator" id="save-indicator-${day.day}"></div>
+        </div>
+
+        <button class="done-btn ${completed ? 'completed' : ''}" id="done-btn-${day.day}" onclick="toggleComplete(${day.day})">
+          ${completed ? '✓ Erledigt — tippen, um zurückzunehmen' : 'Heute geschafft ✓'}
+        </button>
+
+        <div class="day-nav">
+          <button class="nav-btn" onclick="openDay(${dayNum - 1})" ${dayNum <= 1 ? 'disabled' : ''}>← Vorheriger Tag</button>
+          <button class="nav-btn" onclick="openDay(${dayNum + 1})" ${dayNum >= 21 ? 'disabled' : ''}>Nächster Tag →</button>
+        </div>
+      `;
+
+      detail.classList.add('active');
+      setTimeout(() => {
+        document.getElementById('day-detail-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+      saveState();
+    }
+
+    function handleNoteInput(dayNum, value) {
+      state.notes[dayNum] = value;
+      const indicator = document.getElementById('save-indicator-' + dayNum);
+      if (indicator) {
+        indicator.textContent = 'Wird gespeichert …';
+        indicator.classList.add('visible');
+        indicator.classList.remove('saved');
+      }
+      debouncedSave(() => {
+        if (indicator) {
+          indicator.textContent = 'Gespeichert ✓';
+          indicator.classList.add('saved');
+          setTimeout(() => { if (indicator) indicator.classList.remove('visible'); }, 1800);
+        }
+        renderWeeks();
+      });
+    }
+
+    function toggleComplete(dayNum) {
+      const idx = state.completedDays.indexOf(dayNum);
+      if (idx === -1) {
+        state.completedDays.push(dayNum);
+        state.completedDays.sort((a, b) => a - b);
+      } else {
+        state.completedDays.splice(idx, 1);
+      }
+      saveState();
+      renderProgress();
+      renderWeeks();
+
+      const btn = document.getElementById('done-btn-' + dayNum);
+      const isCompleted = state.completedDays.includes(dayNum);
+      if (btn) {
+        if (isCompleted) {
+          btn.classList.add('completed');
+          btn.textContent = '✓ Erledigt — tippen, um zurückzunehmen';
+        } else {
+          btn.classList.remove('completed');
+          btn.textContent = 'Heute geschafft ✓';
+        }
+      }
+
+      if (isCompleted && state.completedDays.length === 21) {
+        setTimeout(() => {
+          document.getElementById('completion-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    }
+
+    // ============================================
+    // MODAL
+    // ============================================
+    function openModal() {
+      document.getElementById('sos-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('sos-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(event) {
+      if (event.target.id === 'sos-modal') closeModal();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('sos-modal').classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // ============================================
+    // NOTES OVERVIEW
+    // ============================================
+    function showNotesOverview() {
+      document.getElementById('day-detail').classList.remove('active');
+      const overview = document.getElementById('notes-overview');
+      const list = document.getElementById('notes-list');
+
+      const entries = daysData
+        .filter(d => state.notes[d.day] && state.notes[d.day].trim().length > 0)
+        .map(d => `
+          <div class="note-entry">
+            <div class="note-entry-num">Tag ${d.day}</div>
+            <div class="note-entry-name">${escapeHtml(d.title)}</div>
+            <div class="note-entry-text">${escapeHtml(state.notes[d.day])}</div>
+          </div>
+        `);
+
+      list.innerHTML = entries.length > 0
+        ? entries.join('')
+        : '<div class="empty-notes">Noch keine Notizen geschrieben.</div>';
+
+      overview.classList.add('active');
+      setTimeout(() => overview.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+
+    function hideNotesOverview() {
+      document.getElementById('notes-overview').classList.remove('active');
+    }
+
+    // ============================================
+    // RESET
+    // ============================================
+    function resetProgress() {
+      const confirmed = confirm(
+        'Möchtest du wirklich von vorne starten?\n\n' +
+        'Alle Notizen, Werkzeug-Eingaben und der Fortschritt werden gelöscht. ' +
+        'Das lässt sich nicht rückgängig machen.'
+      );
+      if (!confirmed) return;
+
+      state = {
+        version: STATE_VERSION,
+        completedDays: [],
+        notes: {},
+        toolData: {},
+        lastVisited: null,
+        currentDay: null
+      };
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+      document.getElementById('day-detail').classList.remove('active');
+      hideNotesOverview();
+      renderProgress();
+      renderWeeks();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ============================================
+    // INIT
+    // ============================================
+    function init() {
+      loadState();
+      renderProgress();
+      renderWeeks();
+
+      // Collapse intro on return visits
+      if (state.completedDays.length > 0 || Object.keys(state.notes).length > 0 || Object.keys(state.toolData).length > 0) {
+        document.getElementById('intro-banner').open = false;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
